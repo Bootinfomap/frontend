@@ -1,7 +1,6 @@
 import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MapScreen from './MapScreen';
-import RegisterScreen from './RegisterScreen';
 import FeedScreen from './FeedScreen';
 import UserScreen from './UserScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -16,25 +15,16 @@ export default function MainScreen() {
         options={{
           tabBarLabel: '지도',
           tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
-          tabBarColor: 'black',
+          tabBarColor: 'blue',
         }}
         component={MapScreen}
-      />
-      <Tab.Screen
-        name="Register"
-        options={{
-          tabBarLabel: '등록',
-          tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
-          tabBarColor: 'black',
-        }}
-        component={RegisterScreen}
       />
       <Tab.Screen
         name="Feed"
         options={{
           tabBarLabel: '피드',
           tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
-          tabBarColor: 'black',
+          tabBarColor: 'blue',
         }}
         component={FeedScreen}
       />
@@ -43,7 +33,7 @@ export default function MainScreen() {
         options={{
           tabBarLabel: '사용자',
           tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
-          tabBarColor: 'black',
+          tabBarColor: 'blue',
         }}
         component={UserScreen}
       />
