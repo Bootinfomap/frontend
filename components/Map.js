@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 import NaverMapView, {Marker} from 'react-native-nmap';
 import {useAppDispatch} from '../app/hooks';
 import {setLocation} from '../reducers/location.reducer';
+import MarkerView from './MarkerView';
 
 export default function Map() {
   const [data, setData] = useState([
@@ -24,15 +25,9 @@ export default function Map() {
         }}
         onMapClick={e => console.warn('onMapClick', JSON.stringify(e))}
         useTextureView>
-        {data.map((value, ix) => {
-          return (
-            <Marker
-              key={ix}
-              coordinate={value}
-              onClick={() => console.warn(`onClick! p${ix}`)}
-            />
-          );
-        })}
+        {data.map((location, ix) => (
+          <MarkerView key={ix} location={location} desc={'Marker'} />
+        ))}
       </NaverMapView>
     </View>
   );
