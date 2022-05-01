@@ -1,32 +1,43 @@
 import PostListItem from './PostListItem';
 import React, {useState}from 'react';
 import {
-  SafeAreaView,
+  
   ScrollView,
-  StatusBar,
+ 
   StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-  Image,
-  Button,
-  TextInput,
-  TouchableOpacity,
-  Keyboard,
+  
+
+  RefreshControl,
+  
 } from 'react-native';
 
-const PostList = ({post}) => {
+const PostList = ({posts}) => {
+    const wait = (timeout) => {
+      return new Promise(resolve => setTimeout(resolve, timeout));
+    }
+
+    const [refreshing, setRefreshing] = React.useState(false);
+
+    const onRefresh = React.useCallback(() => {
+      setRefreshing(true);
+      wait(1500).then(() => setRefreshing(false));
+    }, []);
+
     return (
-      <ScrollView contentContainerStyle={listStyles.listContainer}>
-        {post.map(post => (
+      <ScrollView 
+      contentContainerStyle = {listStyles.listContainer}
+      refreshControl={
+        <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            progressViewOffset={100}
+        />
+      }
+      >
+        {posts.map(post => (
           <PostListItem
             key={post.idx}
-            userid={post.userid}
-            ago={post.ago}
-            category={post.category}
-            title={post.title}
-            like={post.like}
-            dislike={post.dislike}
+            post={post}
           />
         ))}
       </ScrollView>
