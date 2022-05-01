@@ -1,17 +1,9 @@
 import React, {useState}from 'react';
 import {
   SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
-  Image,
-  Button,
-  TextInput,
-  TouchableOpacity,
-  Keyboard,
 } from 'react-native';
 import PostInsert from '../components/PostInsert';
 import PostList from '../components/PostList';
@@ -19,6 +11,7 @@ import PostList from '../components/PostList';
 export default function FeedScreen() {
   // posts: {idx, user_idx, title, category, public, location, create_at, modified_at, deleted_at}
   const [posts, setPosts] = useState([]);
+  /*
   var date= new Date();
   var tempDate= new Date(2022,3,13,9,47);
   const makeAgo = ({nowDate,preDate}) => {
@@ -49,12 +42,12 @@ export default function FeedScreen() {
     }
     return str + ' ago';
   };
+  */
   const addPost = ({title, category}) => {
     setPosts([
       {
       idx: Math.random().toString(),
       userid: 'YS',
-      ago:makeAgo({nowDate:date,preDate:tempDate}),
       title: title,
       category: category,
       like:0,
@@ -69,8 +62,7 @@ export default function FeedScreen() {
       <Text style={feedStyles.appTitle}>F E E D</Text>
       <View style={feedStyles.card}>
         <PostInsert onAddPost={addPost} />
-        <PostList post={posts} />
-
+        <PostList posts={posts} />
       </View>
     </SafeAreaView>
   );
