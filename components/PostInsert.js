@@ -1,27 +1,36 @@
 import React, {useState}from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
-  useColorScheme,
   View,
-  Image,
   Button,
   TextInput,
-  TouchableOpacity,
   Keyboard,
+  Alert,
 } from 'react-native';
+
 
 const PostInsert = ({onAddPost}) => {
     const [newTitleItem, setNewTitleItem] = useState('');
     const [newCateItem, setNewCateItem] = useState('');
+    
     const addPostHandler = () => {
-      onAddPost({title: newTitleItem,category:newCateItem});
-      setNewTitleItem('');
-      setNewCateItem('');
-      Keyboard.dismiss();
+      const testTitle=newTitleItem.trim();
+      const testCate=newCateItem.trim();
+      if (testTitle != '' && testCate != '' ){
+        onAddPost({title: newTitleItem,category:newCateItem});
+        setNewTitleItem('');
+        setNewCateItem('');
+        Keyboard.dismiss();
+      }
+      else {
+        Alert.alert(
+          "내용을 입력해주세요"
+      );
+      if (testTitle == ''){
+        setNewTitleItem('');
+      }
+        setNewCateItem('');
+      }
     };
   
     return (
@@ -48,6 +57,7 @@ const PostInsert = ({onAddPost}) => {
         <View style={insertStyles.button}>
           <Button title={'+'} onPress={addPostHandler} />
         </View>
+        
       </View>
     );
   };
