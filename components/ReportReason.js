@@ -11,11 +11,13 @@ import { useNavigation } from '@react-navigation/native';
 const ReportReason = () => {
     const [reason,setReason] = useState('');
     const navigation = useNavigation();
+    const temp = '-----'
     return (
         <View style = {reportStyles.container}>
-            <Text>신고 사유</Text>
+            <Text style= {reportStyles.purpose}>신고 사유</Text>
             <Picker
-            selectedValue={reason}
+            style ={reportStyles.select}
+            selectedValue={temp}
             onValueChange={(itemValue, itemIndex) =>
             setReason(itemValue)
             }>
@@ -34,9 +36,11 @@ const ReportReason = () => {
             value={reason}
             onChangeText={(text)=>{setReason(text)}}  
             />
+            <View style={{wigth: '85%', height: '12.5%', alignItems: 'center', justifyContent: 'center'}}>
             <TouchableOpacity style={reportStyles.button} onPress={()=>{navigation.goBack();}}>
-                <Text>신고하기</Text>
+                <Text style={reportStyles.buttonText}>신 고 하 기</Text>
             </TouchableOpacity>
+            </View>
         </View>
     )
 };
@@ -44,15 +48,39 @@ const ReportReason = () => {
 const reportStyles = StyleSheet.create({
     container : {
         flex: 1,
+        borderTopWidth: 0.5,
+        borderColor: '#838383',
+        marginTop: 5,
+    },
+    purpose : {
+        marginTop: 20,
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'black',
     },
     select : {
-
+        borderWidth: 2,
+        borderColor: '#575757',
     },
     input: {
-        flex: 4,
+        flex: 1.5,
+        borderColor: '#dddddd',
+        borderWidth: 0.5,
     },
     button:{
-
+        borderColor: '#7c7c7c',
+        borderWidth: 3,
+        backgroundColor: '#313131',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width:'90%',
+        height:'90%',
+        borderRadius:10,
+    },
+    buttonText:{
+        fontSize: 20,
+        color: 'white',
+        fontWeight: '700',
     },
 
 });

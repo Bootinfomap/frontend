@@ -30,7 +30,7 @@ const PostModal = ({modalVisible,setModalVisible,post}) => {
         <TouchableOpacity style={postModalStyles.listButton} onPress={()=>{ setDelModalVisible(!delModalVisible);}}>
             <Text style={postModalStyles.text}>삭제하기</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={postModalStyles.listButton} onPress={()=>{navigation.navigate('Report', { title: post.title });}}>
+        <TouchableOpacity style={postModalStyles.listButton} onPress={()=>{console.log(post.title); navigation.navigate('Report', { title: post.title });}}>
             <Text style={postModalStyles.text}>신고하기</Text>
         </TouchableOpacity>
         </View>
@@ -43,7 +43,7 @@ const PostModal = ({modalVisible,setModalVisible,post}) => {
     );
 
 };
-
+//
 const postModalStyles = StyleSheet.create({
     exContainer : {
         flex:1,
