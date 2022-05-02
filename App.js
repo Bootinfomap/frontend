@@ -4,7 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MainScreen from './screens/MainScreen';
 import {store} from './app/store';
 import {Provider} from 'react-redux';
-
+import ReportScreen from './screens/ReportScreen';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -12,7 +12,25 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Main">
-          <Stack.Screen name="Main" component={MainScreen} />
+          <Stack.Screen options={{headerShown: false}} name="Main" component={MainScreen} />
+          <Stack.Screen
+          name="Report"
+          component={ReportScreen}
+          options={{
+            title: 'R E P O R T',
+            headerStyle: {
+              backgroundColor: '#b53e04',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 25,
+            marginTop: 20,
+            marginBottom: 20,
+
+            },
+          }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
