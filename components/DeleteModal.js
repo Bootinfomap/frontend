@@ -62,7 +62,7 @@ const deleteModalStyles = StyleSheet.create({
         
     },
     nofiContainer:{
-        flex: 2.1,
+        flex: 2,
         backgroundColor:'#313131',
         alignItems:'flex-start',
         justifyContent:'center',
@@ -75,9 +75,9 @@ const deleteModalStyles = StyleSheet.create({
     },
     nofiText:{
         flex:1,
-        fontSize:20,
+        fontSize:17.5,
         color:'white',
-        marginVertical: 20,
+        marginVertical: 17.5,
     },
     button:{
         flex:1,
@@ -88,17 +88,17 @@ const deleteModalStyles = StyleSheet.create({
     },
     noText: {
         flex:1,
-        fontSize:20,
-        color:'#e3fefa',
-        marginVertical:15,
-        marginHorizontal:15,
+        fontSize:17.5,
+        color:'#fff',
+        marginVertical:12.5,
+        marginHorizontal:12.5,
     },
     yesText: {
         flex:1,
-        fontSize:20,
-        color:'#feede3',
-        marginVertical:15,
-        marginHorizontal:15,
+        fontSize:17.5,
+        color:'#fff',
+        marginVertical:12.5,
+        marginHorizontal:12.5,
     },
     
 
