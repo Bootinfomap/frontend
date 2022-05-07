@@ -3,8 +3,9 @@ import React from 'react'
 import {View,Text,TouchableOpacity,StyleSheet} from 'react-native'
 
 const SettingContent = ({content}) => {
+
     return(
-        <TouchableOpacity onPress = {()=>{content.contentFunc}} style={listStyles(content.contentColor).list}>
+        <TouchableOpacity onPress = {content.contentFunc} style={listStyles(content.contentColor).list}>
             <Icon name={content.iconName} size= {26.5} color={content.iconColor}/>
             <View style={listStyles(content.contentColor).textContainer}>
                 <Text style={listStyles(content.contentColor).text}>{content.contentName}</Text>

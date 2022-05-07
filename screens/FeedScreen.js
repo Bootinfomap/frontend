@@ -1,4 +1,4 @@
-import React, {useState}from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -43,29 +43,17 @@ export default function FeedScreen() {
     return str + ' ago';
   };
   */
-  const addPost = ({title, category}) => {
-    setPosts([
-      {
-      idx: Math.random().toString(),
-      userid: 'YS',
-      title: title,
-      category: category,
-      like:0,
-      dislike:0,
-      },
-      ...posts,
-    ]);
-  };
 
   return (
     <SafeAreaView style={feedStyles.container}>
       <Text style={feedStyles.appTitle}>F E E D</Text>
       <View style={feedStyles.card}>
-        <PostInsert onAddPost={addPost} />
-        <PostList posts={posts} />
+        <PostInsert />
+        <PostList />
       </View>
     </SafeAreaView>
   );
+  
 };
 
 const feedStyles = StyleSheet.create({
