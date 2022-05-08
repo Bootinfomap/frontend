@@ -10,7 +10,7 @@ import {
 import { useAppDispatch } from '../app/hooks';
 import { removePost } from '../reducers/PostReducer';
 
-const DeleteModal = ({ delModalVisible, setDelModalVisible, modalVisible, setModalVisible, id }) => {
+const DeleteModal = ({ delModalVisible, setDelModalVisible, id }) => {
     const dispatch = useAppDispatch();
     return (
         <Modal
@@ -33,7 +33,7 @@ const DeleteModal = ({ delModalVisible, setDelModalVisible, modalVisible, setMod
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={deleteModalStyles.button}
-                                onPress={() => { setModalVisible(!modalVisible); setDelModalVisible(!delModalVisible); }}
+                                onPress={() => {setDelModalVisible(!delModalVisible); }}
                             >
                                 <Text style={deleteModalStyles.noText}>아니요</Text>
                             </TouchableOpacity>

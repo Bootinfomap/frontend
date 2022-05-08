@@ -6,8 +6,6 @@ import {
   Text,
 } from 'react-native';
 import ReportReason from '../components/ReportReason';
-import { useAppDispatch } from '../app/hooks';
-import { selectPost } from '../reducers/PostReducer';
 const ReportScreen = ({navigation,route}) => {
     let reportThing = route.params.title;
     let textVal = '';

@@ -23,9 +23,17 @@ export const postSlice = createSlice({
         removePost: (state,action) => {
             state.posts = state.posts.filter(post => post.idx !== action.payload.id)
         },
+        revisePost: (state,action) => {
+            state.posts = state.posts.map(post => {
+                if (post.idx == action.payload.id)
+                    return action.payload.newPost;
+                else
+                    return post;
+            })
+        },
     },
   })
   
-export const { addPost, removePost} = postSlice.actions;
+export const { addPost, removePost, revisePost} = postSlice.actions;
 
 export default postSlice.reducer;
