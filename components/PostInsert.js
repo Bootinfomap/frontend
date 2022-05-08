@@ -79,7 +79,8 @@ const insertStyles = StyleSheet.create({
     marginLeft: 10,
     backgroundColor: 'white',
     height: 40,
-    color: 'black'
+    color: 'black',
+    borderRadius: 2.5, 
   },
   button: {
     marginRight: 10,
@@ -96,7 +97,8 @@ const insertStyles = StyleSheet.create({
     marginVertical: 10,
     height: 40,
     width: 40,
-    color: 'black'
+    color: 'black',
+    borderRadius: 2.5, 
   }
 });
 
