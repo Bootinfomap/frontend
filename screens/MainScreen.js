@@ -8,13 +8,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const Tab = createMaterialBottomTabNavigator();
 
 export default function MainScreen() {
+  //icon map or room
   return (
     <Tab.Navigator initialRouteName="Home" tabBarOptions={{showIcon: true}}>
       <Tab.Screen
         name="Map"
         options={{
           tabBarLabel: '지도',
-          tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
+          tabBarIcon: ({color}) => <Icon name="map" color={color} size={28} />,
           tabBarColor: 'blue',
         }}
         component={MapScreen}
@@ -23,7 +24,7 @@ export default function MainScreen() {
         name="Feed"
         options={{
           tabBarLabel: '피드',
-          tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
+          tabBarIcon: ({color}) => <Icon name="wysiwyg" color={color} size={28} />,
           tabBarColor: 'blue',
         }}
         component={FeedScreen}
@@ -32,7 +33,7 @@ export default function MainScreen() {
         name="User"
         options={{
           tabBarLabel: '사용자',
-          tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
+          tabBarIcon: ({color}) => <Icon name="sentiment-satisfied-alt" color={color} size={28} />,
           tabBarColor: 'blue',
         }}
         component={UserScreen}

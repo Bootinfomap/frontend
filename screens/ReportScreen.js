@@ -6,29 +6,28 @@ import {
   Text,
 } from 'react-native';
 import ReportReason from '../components/ReportReason';
-
-const ReportScreen = ({route}) => {
-    
-    const textVal = '';
-    if (route.param.title.length > 12){
-        textVal = route.params.title.substring(0,10) + '...';
+const ReportScreen = ({navigation,route}) => {
+    let reportThing = route.params.title;
+    let textVal = '';
+    if (reportThing.length > 12){
+        textVal = reportThing.substring(0,10) + '...';
     }
     else {
-        textVal = route.params.title;
+        textVal = reportThing;
     }
     
+   //control this with post id and redux
     return(
         <SafeAreaView style = {reportStyles.container}>
-            <Text style={reportStyles.appTitle}>R E P O R T</Text>
             <View style = {reportStyles.card}>
-                <Text>신고 내용</Text>
-                <Text>textval</Text>
+                <Text style={reportStyles.purpose}>신고 내용</Text>
+                <Text style={reportStyles.title}>{textVal}</Text>
                 <ReportReason/>
             </View>
         </SafeAreaView>
     );
 };
-
+//<Text style={reportStyles.appTitle}>R E P O R T</Text>
 const reportStyles = StyleSheet.create({
     container : {
         flex: 1,
@@ -48,6 +47,17 @@ const reportStyles = StyleSheet.create({
         flex: 1,
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
+        padding: 12.5,
+    },
+    purpose:{
+        fontSize: 25,
+        marginVertical: 5,
+        color: 'black',
+        fontWeight: 'bold',
+    },
+    title:{
+        fontSize: 20,
+        marginVertical: 5,
     },
 });
 

@@ -10,40 +10,40 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import DeleteModal from './DeleteModal';
 
-const PostModal = ({modalVisible,setModalVisible,post}) => {
-    const [delModalVisible,setDelModalVisible]=useState(false);
+const PostModal = ({ modalVisible, setModalVisible, post }) => {
+    const [delModalVisible, setDelModalVisible] = useState(false);
     const navigation = useNavigation();
-    return(
-    <Modal
-        animationType="fade"
-        visible={modalVisible}
-        transparent={true}
-        onRequestClose={() => {
-            setModalVisible(!modalVisible);
-        }}
-    >
-        <TouchableWithoutFeedback onPress={()=>{setModalVisible(!modalVisible)}}>
-        <View style={postModalStyles.exContainer}>
-        <TouchableOpacity style={postModalStyles.listButton}>
-            <Text style={postModalStyles.text}>수정하기</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={postModalStyles.listButton} onPress={()=>{ setDelModalVisible(!delModalVisible);}}>
-            <Text style={postModalStyles.text}>삭제하기</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={postModalStyles.listButton} onPress={()=>{navigation.navigate('Report', { title: post.title });}}>
-            <Text style={postModalStyles.text}>신고하기</Text>
-        </TouchableOpacity>
-        </View>
-        </TouchableWithoutFeedback>
-        <DeleteModal 
-        delModalVisible={delModalVisible} setDelModalVisible={setDelModalVisible}
-        modalVisible={modalVisible} setModalVisible={setModalVisible}
-        />
-    </Modal>
+    return (
+        <Modal
+            animationType="fade"
+            visible={modalVisible}
+            transparent={true}
+            onRequestClose={() => {
+                setModalVisible(!modalVisible);
+            }}
+        >
+            <TouchableWithoutFeedback onPress={() => { setModalVisible(!modalVisible) }}>
+                <View style={postModalStyles.exContainer}>
+                    <TouchableOpacity style={postModalStyles.listButton}>
+                        <Text style={postModalStyles.text}>수정하기</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={postModalStyles.listButton} onPress={() => { setDelModalVisible(!delModalVisible); }}>
+                        <Text style={postModalStyles.text}>삭제하기</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={postModalStyles.listButton} onPress={() => { navigation.navigate('Report', { title: post.title }); }}>
+                        <Text style={postModalStyles.text}>신고하기</Text>
+                    </TouchableOpacity>
+                </View>
+            </TouchableWithoutFeedback>
+            <DeleteModal
+                delModalVisible={delModalVisible} setDelModalVisible={setDelModalVisible}
+                id={post.idx}
+            />
+        </Modal>
     );
 
 };
-
+//
 const postModalStyles = StyleSheet.create({
     exContainer : {
         flex:1,
