@@ -7,7 +7,7 @@ import {
   Keyboard,
   Alert,
 } from 'react-native';
-import { addPost } from '../reducers/PostReducer';
+import { addPost } from '../reducers/post.reducer';
 import { useAppDispatch } from '../app/hooks';
 
 const PostInsert = () => {

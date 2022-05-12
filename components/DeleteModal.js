@@ -8,7 +8,7 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import { useAppDispatch } from '../app/hooks';
-import { removePost } from '../reducers/PostReducer';
+import { removePost } from '../reducers/post.reducer';
 
 const DeleteModal = ({ delModalVisible, setDelModalVisible, id }) => {
     const dispatch = useAppDispatch();
@@ -54,18 +54,18 @@ const deleteModalStyles = StyleSheet.create({
 
     },
     inContainer: {
-        backgroundColor: '#313131',
+        backgroundColor: '#313131c0',
         alignItems: 'center',
         justifyContent: 'center',
         width: '72.5%',
         height: '22.5%',
         borderWidth: 1,
         borderColor: '#646464',
-
+        borderRadius: 10,
     },
     nofiContainer: {
         flex: 2,
-        backgroundColor: '#313131',
+       
         alignItems: 'flex-start',
         justifyContent: 'center',
 
