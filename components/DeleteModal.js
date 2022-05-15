@@ -8,7 +8,7 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import { useAppDispatch } from '../app/hooks';
-import { removePost } from '../reducers/PostReducer';
+import { removePost } from '../reducers/post.reducer';
 
 const DeleteModal = ({ delModalVisible, setDelModalVisible, id }) => {
     const dispatch = useAppDispatch();
