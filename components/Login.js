@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, TouchableOpacity} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {
   TextInput,
   Button,
@@ -15,6 +16,7 @@ export default function Login({onPress}) {
   const [emailWarn, setEmailWarn] = useState(false);
   const [passwordWarn, setPasswordWarn] = useState(false);
   const [remember, setRemember] = useState(false);
+  const navigation = useNavigation()
   return (
     <View>
       <TextInput
@@ -53,8 +55,10 @@ export default function Login({onPress}) {
           setEmailWarn(email === '');
           setPasswordWarn(password === '');
           if (!(emailWarn || passwordWarn)) {
-            console.log('login successed');
+
+            
           }
+          navigation.navigate('Main');
         }}>
         Login
       </Button>
