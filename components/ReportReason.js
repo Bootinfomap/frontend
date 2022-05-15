@@ -68,7 +68,7 @@ const reportStyles = StyleSheet.create({
     },
     button:{
         borderColor: '#7c7c7c',
-        borderWidth: 3,
+        borderWidth: 2,
         backgroundColor: '#313131',
         alignItems: 'center',
         justifyContent: 'center',
@@ -79,7 +79,7 @@ const reportStyles = StyleSheet.create({
     buttonText:{
         fontSize: 20,
         color: 'white',
-        fontWeight: '700',
+        fontWeight: 'bold',
     },
 
 });
