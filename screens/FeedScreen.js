@@ -46,7 +46,7 @@ export default function FeedScreen() {
 
   return (
     <SafeAreaView style={feedStyles.container}>
-      <Text style={feedStyles.appTitle}>F E E D</Text>
+      {/* <Text style={feedStyles.appTitle}>F E E D</Text> */}
       <View style={feedStyles.card}>
         <PostInsert />
         <PostList />
