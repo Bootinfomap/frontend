@@ -10,13 +10,13 @@ const Tab = createMaterialBottomTabNavigator();
 export default function MainScreen() {
   //icon map or room
   return (
-    <Tab.Navigator initialRouteName="Home" tabBarOptions={{showIcon: true}}>
+    <Tab.Navigator initialRouteName="Home" tabBarOptions={{showIcon: true}} shifting={true} barStyle={{}}>
       <Tab.Screen
         name="Map"
         options={{
           tabBarLabel: '지도',
           tabBarIcon: ({color}) => <Icon name="map" color={color} size={28} />,
-          tabBarColor: 'blue',
+          tabBarColor: '#00b446',
         }}
         component={MapScreen}
       />
@@ -34,7 +34,7 @@ export default function MainScreen() {
         options={{
           tabBarLabel: '사용자',
           tabBarIcon: ({color}) => <Icon name="sentiment-satisfied-alt" color={color} size={28} />,
-          tabBarColor: 'blue',
+          tabBarColor: '#0092ff',
         }}
         component={UserScreen}
       />

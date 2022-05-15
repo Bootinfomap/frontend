@@ -1,10 +1,12 @@
 import React from 'react'
 import {View,ScrollView,SafeAreaView,StyleSheet,Text,TouchableOpacity} from 'react-native'
 import SettingContent from '../components/SettingContent'
+import { useNavigation } from '@react-navigation/native';
 
 export default function UserScreen() {
   //goodbye: priority-high or undo or directions-run
   // 각 리스트를 클릭 시 사용할 함수, 파일을 따로 만들어도 좋을것 같습니다
+  const navigation = useNavigation();
   const account = () => {
     console.log('account');
   };
@@ -23,20 +25,21 @@ export default function UserScreen() {
 
   const logout = () => {
     console.log('logout');
+    navigation.navigate('Login');
   };
 
   const goodbye = () => {
-    console.log('goobye');
+    console.log('resign');
   };
 
   //각 콘텐츠, id는 인덱스, iconcolor는 기본적으로 파랑, contentcolor는 글자의 색, contentfunc에 클릭하면 작동할 것  
   const contents = [
-    {index: 0, iconColor:"#0092ff", iconName: "account-circle", contentName:"계정", contentColor:'#222222',  contentFunc: account},
-    {index: 1, iconColor:"#0092ff", iconName: "priority-high", contentName:"공지사항", contentColor:'#222222', contentFunc: announce},
-    {index: 2, iconColor:"#0092ff", iconName: "info-outline", contentName:"정보",  contentColor:'#222222', contentFunc: infomation},
-    {index: 3, iconColor:"#0092ff", iconName: "question-answer", contentName:"문의하기", contentColor:'#222222',  contentFunc: qna},
-    {index: 4, iconColor:"#0092ff", iconName: "logout", contentName:"로그아웃", contentColor:'#222222',  contentFunc: logout},
-    {index: 5, iconColor:"#dd0002", iconName: "remove", contentName: "탈퇴하기", contentColor:'#df424f',  contentFunc: goodbye},
+    {index: 0, iconColor:"#0092ff", iconName: "account-circle", contentName:" 계 정 ", contentColor:'#222222',  contentFunc: account},
+    {index: 1, iconColor:"#0092ff", iconName: "priority-high", contentName:" 공 지 사 항", contentColor:'#222222', contentFunc: announce},
+    {index: 2, iconColor:"#0092ff", iconName: "info-outline", contentName:" 정 보 ",  contentColor:'#222222', contentFunc: infomation},
+    {index: 3, iconColor:"#0092ff", iconName: "question-answer", contentName:" 문 의 하 기", contentColor:'#222222',  contentFunc: qna},
+    {index: 4, iconColor:"#0092ff", iconName: "logout", contentName:" 로 그 아 웃", contentColor:'#222222',  contentFunc: logout},
+    {index: 5, iconColor:"#dd0002", iconName: "highlight-off", contentName: " 탈 퇴 하 기", contentColor:'#df424f',  contentFunc: goodbye},
   ];
   //index: number, iconcolor,iconname,contentname,contentcolor: string, contentfunc: console.log("~~")
   return (

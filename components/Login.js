@@ -8,8 +8,10 @@ import {
   Switch,
   Text,
 } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Login({onPress}) {
+  const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailWarn, setEmailWarn] = useState(false);
@@ -41,7 +43,7 @@ export default function Login({onPress}) {
       <TouchableOpacity
         style={{flexDirection: 'row', alignContent: 'center', marginBottom: 10}}
         onPress={() => setRemember(!remember)}>
-        <Switch value={remember} onPress={() => setRemember(!remember)} />
+        <Switch value={remember} onValueChange={() => setRemember(!remember)} />
         <View style={{alignSelf: 'center'}}>
           <Text>Remember Me</Text>
         </View>
@@ -54,6 +56,7 @@ export default function Login({onPress}) {
           setPasswordWarn(password === '');
           if (!(emailWarn || passwordWarn)) {
             console.log('login successed');
+            navigation.navigate('Main');
           }
         }}>
         Login

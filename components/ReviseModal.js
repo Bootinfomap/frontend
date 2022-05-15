@@ -24,7 +24,10 @@ const ReviseModal = ({ reModalVisible, setReModalVisible, modalVisible, setModal
     const revisePostHandler = () => {
         const testTitle = newTitleItem.trim();
         const testCate = newCateItem.trim();
-        if (testTitle != '' && testCate != '') {
+        if ( newTitleItem == post.title && newCateItem == post.category) {
+
+        }
+        else if (testTitle != '' && testCate != '') {
             let item = { ...post };
             item.title = newTitleItem;
             item.category = newCateItem;
@@ -102,7 +105,7 @@ const reviseModalStyles = StyleSheet.create({
         backgroundColor: 'white',
         height: 43,
         color: 'black',
-        borderRadius: 1,
+        borderRadius: 2,
     },
     category: {
         fontSize: 21.5,
@@ -113,7 +116,7 @@ const reviseModalStyles = StyleSheet.create({
         height: 43,
         width: 43,
         color: 'black',
-        borderRadius: 1,
+        borderRadius: 2,
     },
     excontainer: {
         flex: 1,
@@ -122,7 +125,7 @@ const reviseModalStyles = StyleSheet.create({
         alignItems: 'center',
     },
     inputContainer: {
-        backgroundColor: '#313131',
+        backgroundColor: '#393939',
         borderTopRightRadius: 8,
         borderTopLeftRadius: 8,
         justifyContent: 'space-between',

@@ -59,7 +59,7 @@ export default function FeedScreen() {
 const feedStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3143e8',
+    backgroundColor: 'blue',
   },
   appTitle: {
     color: '#fff',
@@ -68,7 +68,7 @@ const feedStyles = StyleSheet.create({
     marginBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    backgroundColor: '#3143e8',
+    
   },
   card: {
     backgroundColor: '#fff',
