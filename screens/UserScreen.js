@@ -3,7 +3,6 @@ import {View, SafeAreaView, StyleSheet, Text} from 'react-native';
 import {List} from 'react-native-paper';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AccountScreen from './AccountScreen';
-import NoticeScreen from './NoticeScreen';
 import InfoScreen from './InfoScreen';
 import QnAScreen from './QnAScreen';
 import {useNavigation} from '@react-navigation/native';
@@ -25,14 +24,6 @@ function Element() {
     },
     {
       index: 1,
-      iconName: 'android', // 적절한 아이콘을 찾지 못했다.
-      contentName: '공지사항',
-      contentFunc: () => {
-        navigation.navigate('Notice');
-      },
-    },
-    {
-      index: 2,
       iconName: 'information',
       contentName: '정보',
       contentFunc: () => {
@@ -40,7 +31,7 @@ function Element() {
       },
     },
     {
-      index: 3,
+      index: 2,
       iconName: 'comment-question',
       contentName: '문의하기',
       contentFunc: () => {
@@ -48,7 +39,7 @@ function Element() {
       },
     },
     {
-      index: 4,
+      index: 3,
       iconName: 'logout',
       contentName: '로그아웃',
       contentFunc: () => {
@@ -81,7 +72,6 @@ export default function UserScreen() {
         component={AccountScreen}
         options={options}
       />
-      <Stack.Screen name="Notice" component={NoticeScreen} options={options} />
       <Stack.Screen name="Info" component={InfoScreen} options={options} />
       <Stack.Screen name="QnA" component={QnAScreen} options={options} />
     </Stack.Navigator>
