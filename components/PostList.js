@@ -1,24 +1,14 @@
 import PostListItem from './PostListItem';
-import React, { useState } from 'react';
-import {
-
-  ScrollView,
-
-  StyleSheet,
-
-
-  RefreshControl,
-
-} from 'react-native';
-import { useAppSelector } from '../app/hooks';
+import React, {useState} from 'react';
+import {ScrollView, StyleSheet, RefreshControl} from 'react-native';
+import {useAppSelector} from '../app/hooks';
 
 const PostList = () => {
+  const posts = useAppSelector(state => state.post.posts);
 
-  const posts = useAppSelector((state) => state.postReducer.posts);
-
-  const wait = (timeout) => {
+  const wait = timeout => {
     return new Promise(resolve => setTimeout(resolve, timeout));
-  }
+  };
 
   const [refreshing, setRefreshing] = React.useState(false);
 
@@ -36,13 +26,9 @@ const PostList = () => {
           onRefresh={onRefresh}
           progressViewOffset={100}
         />
-      }
-    >
+      }>
       {posts.map(post => (
-        <PostListItem
-          key={post.idx}
-          post={post}
-        />
+        <PostListItem key={post.idx} post={post} />
       ))}
     </ScrollView>
   );
@@ -54,4 +40,4 @@ const listStyles = StyleSheet.create({
   },
 });
 
-export default PostList;  
+export default PostList;

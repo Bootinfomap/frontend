@@ -1,4 +1,5 @@
 import React from 'react';
+import {Platform, PermissionsAndroid} from 'react-native'
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {store} from './app/store';
@@ -8,7 +9,16 @@ import LoginScreen from './screens/LoginScreen';
 import ReportScreen from './screens/ReportScreen';
 const Stack = createNativeStackNavigator();
 
+async function requestPermissions(){
+  if (Platform.OS === 'android') {
+    await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    );
+  }
+}
+
 export default function App() {
+  requestPermissions();
   return (
     <Provider store={store}>
       <NavigationContainer>

@@ -1,16 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import NaverMapView from 'react-native-nmap';
-import {useAppDispatch} from '../app/hooks';
+import {useAppDispatch, useAppSelector} from '../app/hooks';
 import {setLocation} from '../reducers/location.reducer';
 import MarkerView from '../components/MarkerView';
+import Geolocation from 'react-native-geolocation-service';
 
 export default function MapScreen() {
-  const [data, setData] = useState([
-    {latitude: 37.564362, longitude: 126.977011},
-    {latitude: 37.565051, longitude: 126.978567},
-    {latitude: 37.565383, longitude: 126.976292},
-  ]);
+  const data = useAppSelector(state => state.post.posts);
   const dispatch = useAppDispatch();
 
   return (
@@ -25,8 +22,8 @@ export default function MapScreen() {
         }}
         onMapClick={e => console.warn('onMapClick', JSON.stringify(e))}
         useTextureView>
-        {data.map((location, ix) => (
-          <MarkerView key={ix} location={location} desc={'Marker'} />
+        {data.map((item, ix) => (
+          <MarkerView key={ix} location={{latitude:item.latitude, longitude:item.longitude}} desc={'Marker'} />
         ))}
       </NaverMapView>
     </View>
