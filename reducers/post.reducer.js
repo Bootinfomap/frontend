@@ -17,6 +17,8 @@ export const postSlice = createSlice({
                 category: action.payload.category,
                 like:0,
                 dislike:0,
+                latitude:action.payload.latitude,
+                longitude:action.payload.longitude
                 },
                 ...state.posts,
             ]},
