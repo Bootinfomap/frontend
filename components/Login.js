@@ -11,12 +11,12 @@ import {
 } from 'react-native-paper';
 
 export default function Login({onPress}) {
+  const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailWarn, setEmailWarn] = useState(false);
   const [passwordWarn, setPasswordWarn] = useState(false);
   const [remember, setRemember] = useState(false);
-  const navigation = useNavigation()
   return (
     <View>
       <TextInput
@@ -43,7 +43,7 @@ export default function Login({onPress}) {
       <TouchableOpacity
         style={{flexDirection: 'row', alignContent: 'center', marginBottom: 10}}
         onPress={() => setRemember(!remember)}>
-        <Switch value={remember} onPress={() => setRemember(!remember)} />
+        <Switch value={remember} onValueChange={() => setRemember(!remember)} />
         <View style={{alignSelf: 'center'}}>
           <Text>Remember Me</Text>
         </View>

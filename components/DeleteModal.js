@@ -54,7 +54,7 @@ const deleteModalStyles = StyleSheet.create({
 
     },
     inContainer: {
-        backgroundColor: '#313131c0',
+        backgroundColor: '#313131d5',
         alignItems: 'center',
         justifyContent: 'center',
         width: '72.5%',

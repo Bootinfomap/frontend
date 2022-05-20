@@ -5,6 +5,7 @@ import FeedScreen from './FeedScreen';
 import UserScreen from './UserScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+
 const Tab = createMaterialBottomTabNavigator();
 
 export default function MainScreen() {
@@ -20,8 +21,10 @@ export default function MainScreen() {
           tabBarLabel: '지도',
           tabBarIcon: ({color}) => <Icon name="map" color={color} size={24} />,
           tabBarColor: '#0092ff',
+          
         }}
         component={MapScreen}
+  
       />
       <Tab.Screen
         name="Feed"
@@ -46,5 +49,6 @@ export default function MainScreen() {
         component={UserScreen}
       />
     </Tab.Navigator>
+    
   );
 }
