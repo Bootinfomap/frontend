@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -6,20 +6,25 @@ import {
   TextInput,
   Keyboard,
   Alert,
+  Modal,
+  TouchableOpacity,
+  Text,
 } from 'react-native';
-import {addPost} from '../reducers/post.reducer';
-import {useAppDispatch, useAppSelector} from '../app/hooks';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { addPost } from '../reducers/post.reducer';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import CategoryModal from './CategoryModal';
 
 const PostInsert = () => {
   const dispatch = useAppDispatch();
-  const {longitude, latitude} = useAppSelector(state => state.location.value);
+  const { longitude, latitude } = useAppSelector(state => state.location.value);
   const [newTitleItem, setNewTitleItem] = useState('');
   const [newCateItem, setNewCateItem] = useState('');
+  const [cateModalVisible, setCateModalVisible] = useState(false);
 
   const addPostHandler = () => {
     const testTitle = newTitleItem.trim();
-    const testCate = newCateItem.trim();
-    if (testTitle != '' && testCate != '') {
+    if (testTitle != '') {
       dispatch(
         addPost({
           title: newTitleItem,
@@ -42,15 +47,9 @@ const PostInsert = () => {
 
   return (
     <View style={insertStyles.inputContainer}>
-      <TextInput
-        style={insertStyles.category}
-        placeholder=""
-        value={newCateItem}
-        onChangeText={category => setNewCateItem(category)}
-        autoCorrect={false}
-        placeholderTextColor={'#999'}
-        maxLength={1}
-      />
+      <TouchableOpacity onPress={() => { setCateModalVisible(!cateModalVisible) }} style={insertStyles.category}>
+        <Icon name='category' color='black' size={27}/>
+      </TouchableOpacity>
       <TextInput
         style={insertStyles.input}
         placeholder="Title"
@@ -61,9 +60,10 @@ const PostInsert = () => {
         maxLength={200}
         multiline={true}
       />
-      <View style={insertStyles.button}>
-        <Button title={'+'} onPress={addPostHandler} />
-      </View>
+      <TouchableOpacity style={insertStyles.button} onPress={addPostHandler}>
+        <Text style={insertStyles.buttonText}>+</Text>
+      </TouchableOpacity>
+      <CategoryModal cateModalVisible={cateModalVisible} setCateModalVisible={setCateModalVisible} setNewCateItem={setNewCateItem} />
     </View>
   );
 };
@@ -88,21 +88,27 @@ const insertStyles = StyleSheet.create({
   },
   button: {
     marginRight: 10,
-    height: 35,
-    width: 35,
-    backgroundColor: 'blue',
+    height: 40,
+    width: 40,
+    backgroundColor: '#006cff',
     marginLeft: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 20,
   },
   category: {
-    fontSize: 20,
-    textAlign: 'center',
     marginLeft: 10,
     backgroundColor: 'white',
     marginVertical: 10,
     height: 40,
     width: 40,
-    color: 'black',
-    borderRadius: 2.5,
+    borderRadius: 10,
+    alignItems:'center',
+    justifyContent:'center',
   },
 });
 

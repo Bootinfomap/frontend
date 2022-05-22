@@ -12,7 +12,8 @@ import {
 import { List } from 'react-native-paper';
 import { sideDisappear } from '../const/FilterAnimation';
 
-const FilterConfirm = ({filteringItem,setFilteringItem}) => {
+const FilterConfirm = ({filteringItem,setFilteringItem,sideDisappear}) => {
+  
   const apply = () => {
     console.log(filteringItem);
     sideDisappear();
@@ -22,7 +23,7 @@ const FilterConfirm = ({filteringItem,setFilteringItem}) => {
       <List.Item
         title="적용하기"
         left={() => <List.Icon color="#000" icon="check" />}
-        onPress={sideDisappear}
+        onPress={apply}
       />
       <List.Item
         title="초기화하기"

@@ -13,12 +13,9 @@ import {
 import FilterButton from './FilterButton';
 import FilterConfirm from './FilterConfirm';
 import FilterTitle from './FilterTitle';
-import { sideAni, sideAppear, sideDisappear } from '../const/FilterAnimation';
 
-const DrawerFilter = () => {
-
+const DrawerFilter = ({sideDisappear,sideAni}) => {
     const [filteringItem, setFilteringItem] = useState([]);//필터링할 카테고리들
-    console.log(filteringItem);
     useEffect(() => {
         sideDisappear();
     }, [])
@@ -38,6 +35,7 @@ const DrawerFilter = () => {
                 <FilterConfirm
                     filteringItem={filteringItem}
                     setFilteringItem={setFilteringItem}
+                    sideDisappear={sideDisappear}
                 />
             </View>
         </Animated.View>
