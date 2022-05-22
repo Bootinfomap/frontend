@@ -7,6 +7,10 @@ import {Provider} from 'react-redux';
 import MainScreen from './screens/MainScreen';
 import LoginScreen from './screens/LoginScreen';
 import ReportScreen from './screens/ReportScreen';
+import { sideAppear } from './const/FilterAnimation';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {TouchableOpacity} from 'react-native'
+
 const Stack = createNativeStackNavigator();
 
 async function requestPermissions(){
@@ -37,17 +41,11 @@ export default function App() {
             name="Report"
             component={ReportScreen}
             options={{
-              title: 'R E P O R T',
+              title: 'Report',
               headerStyle: {
                 backgroundColor: '#b53e04',
               },
               headerTintColor: '#fff',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-                fontSize: 25,
-                marginTop: 20,
-                marginBottom: 20,
-              },
             }}
           />
         </Stack.Navigator>

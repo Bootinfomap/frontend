@@ -12,19 +12,30 @@ import {
 } from 'react-native';
 import { revisePost } from '../reducers/post.reducer';
 import { useAppDispatch } from '../app/hooks';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import CategoryModal from './CategoryModal';
 
 const ReviseModal = ({ reModalVisible, setReModalVisible, modalVisible, setModalVisible, post }) => {
+
     const dispatch = useAppDispatch();
-    const cateRef = useRef();
+
+    const inputRef = useRef();
+
     useEffect(() => {
-        setTimeout(() => cateRef.current?.focus(), 0)
+        setTimeout(() => inputRef.current?.focus(), 0)
     }, [reModalVisible]);
+
     const [newTitleItem, setNewTitleItem] = useState(post.title);
     const [newCateItem, setNewCateItem] = useState(post.category);
+    const [cateModalVisible,setCateModalVisible] = useState(false);
+
     const revisePostHandler = () => {
         const testTitle = newTitleItem.trim();
         const testCate = newCateItem.trim();
-        if (testTitle != '' && testCate != '') {
+        if ( newTitleItem == post.title && newCateItem == post.category) {
+
+        }
+        else if (testTitle != '' && testCate != '') {
             let item = { ...post };
             item.title = newTitleItem;
             item.category = newCateItem;
@@ -43,7 +54,7 @@ const ReviseModal = ({ reModalVisible, setReModalVisible, modalVisible, setModal
                 setNewTitleItem('');
             }
             setNewCateItem('');
-            cateRef.current?.focus();
+            inputRef.current?.focus();
         }
     };
 
@@ -60,17 +71,9 @@ const ReviseModal = ({ reModalVisible, setReModalVisible, modalVisible, setModal
             <TouchableWithoutFeedback onPress={() => { setReModalVisible(!reModalVisible) }}>
                 <View style={reviseModalStyles.excontainer}>
                     <View style={reviseModalStyles.inputContainer}>
-                        <TextInput
-                            style={reviseModalStyles.category}
-                            placeholder=''
-                            value={newCateItem}
-                            onChangeText={(category) => setNewCateItem(category)}
-                            autoCorrect={false}
-                            placeholderTextColor={'#999'}
-                            maxLength={1}
-                            ref={cateRef}
-                            autoFocus={true}
-                        />
+                        <TouchableOpacity onPress={() => { setCateModalVisible(!cateModalVisible) }} style={reviseModalStyles.category}>
+                            <Icon name='category' color='black' size={27} />
+                        </TouchableOpacity>
                         <TextInput
                             style={reviseModalStyles.input}
                             placeholder="Title"
@@ -80,6 +83,7 @@ const ReviseModal = ({ reModalVisible, setReModalVisible, modalVisible, setModal
                             autoCorrect={false}
                             maxLength={200}
                             multiline={true}
+                            ref={inputRef}
                         />
                         <TouchableOpacity style={reviseModalStyles.button} onPress={revisePostHandler}>
                             <Text style={reviseModalStyles.buttonText}>+</Text>
@@ -87,6 +91,7 @@ const ReviseModal = ({ reModalVisible, setReModalVisible, modalVisible, setModal
                     </View>
                 </View>
             </TouchableWithoutFeedback>
+            <CategoryModal cateModalVisible={cateModalVisible} setCateModalVisible={setCateModalVisible} setNewCateItem={setNewCateItem} />
         </Modal>
 
     );
@@ -102,18 +107,17 @@ const reviseModalStyles = StyleSheet.create({
         backgroundColor: 'white',
         height: 43,
         color: 'black',
-        borderRadius: 1,
+        borderRadius: 2,
     },
     category: {
-        fontSize: 21.5,
-        textAlign: 'center',
         marginLeft: 10,
         backgroundColor: 'white',
         marginVertical: 10,
-        height: 43,
-        width: 43,
-        color: 'black',
-        borderRadius: 1,
+        height: 40,
+        width: 40,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     excontainer: {
         flex: 1,
@@ -122,7 +126,7 @@ const reviseModalStyles = StyleSheet.create({
         alignItems: 'center',
     },
     inputContainer: {
-        backgroundColor: '#313131',
+        backgroundColor: '#393939',
         borderTopRightRadius: 8,
         borderTopLeftRadius: 8,
         justifyContent: 'space-between',

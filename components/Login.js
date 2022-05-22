@@ -11,12 +11,12 @@ import {
 } from 'react-native-paper';
 
 export default function Login({onPress}) {
+  const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailWarn, setEmailWarn] = useState(false);
   const [passwordWarn, setPasswordWarn] = useState(false);
   const [remember, setRemember] = useState(false);
-  const navigation = useNavigation();
   return (
     <View>
       <TextInput
