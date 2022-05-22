@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, TouchableOpacity} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {
   TextInput,
   Button,
@@ -16,7 +16,7 @@ export default function Login({onPress}) {
   const [emailWarn, setEmailWarn] = useState(false);
   const [passwordWarn, setPasswordWarn] = useState(false);
   const [remember, setRemember] = useState(false);
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   return (
     <View>
       <TextInput
@@ -43,7 +43,7 @@ export default function Login({onPress}) {
       <TouchableOpacity
         style={{flexDirection: 'row', alignContent: 'center', marginBottom: 10}}
         onPress={() => setRemember(!remember)}>
-        <Switch value={remember} onPress={() => setRemember(!remember)} />
+        <Switch value={remember} onValueChange={() => setRemember(!remember)} />
         <View style={{alignSelf: 'center'}}>
           <Text>Remember Me</Text>
         </View>
@@ -55,8 +55,6 @@ export default function Login({onPress}) {
           setEmailWarn(email === '');
           setPasswordWarn(password === '');
           if (!(emailWarn || passwordWarn)) {
-
-            
           }
           navigation.navigate('Main');
         }}>
