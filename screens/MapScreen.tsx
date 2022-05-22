@@ -7,7 +7,7 @@ import {
   Animated,
   TouchableOpacity,
   Dimensions,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 import NaverMapView from 'react-native-nmap';
 import {useAppDispatch, useAppSelector} from '../app/hooks';
@@ -113,7 +113,7 @@ const styles1 = StyleSheet.create({
     flexDirection: 'column-reverse',
   },
 });
-const styles = (width, height) =>
+const styles = (width: number, height: number) =>
   StyleSheet.create({
     filterButtonStyle: {
       position: 'absolute',

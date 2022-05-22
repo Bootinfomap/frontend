@@ -1,6 +1,21 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-const initialState = {
+type PostType = {
+  latitude: number;
+  like: number;
+  longitude: number;
+  dislike: number;
+  category: string;
+  idx: string;
+  title: string;
+  userid: string;
+};
+
+interface PostState {
+  posts: Array<PostType>;
+}
+
+const initialState: PostState = {
   posts: [
     {
       category: '3',
@@ -15,38 +30,37 @@ const initialState = {
   ],
 };
 
-
 export const postSlice = createSlice({
-    name: 'post',
-    initialState,
-    reducers: {
-        addPost: (state,action) => {
-            state.posts = [{
-                idx: Math.random().toString(),
-                userid: 'ID',
-                title: action.payload.title,
-                category: action.payload.category,
-                like:0,
-                dislike:0,
-                latitude:action.payload.latitude,
-                longitude:action.payload.longitude
-                },
-                ...state.posts,
-            ]},
-        removePost: (state,action) => {
-            state.posts = state.posts.filter(post => post.idx !== action.payload.id)
+  name: 'post',
+  initialState,
+  reducers: {
+    addPost: (state, action) => {
+      state.posts = [
+        {
+          idx: Math.random().toString(),
+          userid: 'ID',
+          title: action.payload.title,
+          category: action.payload.category,
+          like: 0,
+          dislike: 0,
+          latitude: action.payload.latitude,
+          longitude: action.payload.longitude,
         },
-        revisePost: (state,action) => {
-            state.posts = state.posts.map(post => {
-                if (post.idx == action.payload.id)
-                    return action.payload.newPost;
-                else
-                    return post;
-            })
-        },
+        ...state.posts,
+      ];
     },
-  })
-  
-export const { addPost, removePost, revisePost} = postSlice.actions;
+    removePost: (state, action) => {
+      state.posts = state.posts.filter(post => post.idx !== action.payload.id);
+    },
+    revisePost: (state, action) => {
+      state.posts = state.posts.map(post => {
+        if (post.idx == action.payload.id) return action.payload.newPost;
+        else return post;
+      });
+    },
+  },
+});
+
+export const {addPost, removePost, revisePost} = postSlice.actions;
 
 export default postSlice.reducer;

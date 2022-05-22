@@ -1,10 +1,5 @@
-import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import React, {useState} from 'react';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import PostInsert from '../components/PostInsert';
 import PostList from '../components/PostList';
 
@@ -53,8 +48,7 @@ export default function FeedScreen() {
       </View>
     </SafeAreaView>
   );
-  
-};
+}
 
 const feedStyles = StyleSheet.create({
   container: {
@@ -68,18 +62,11 @@ const feedStyles = StyleSheet.create({
     marginBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    
   },
   card: {
     backgroundColor: '#fff',
     flex: 1,
     borderTopLeftRadius: 10, // to provide rounded corners
     borderTopRightRadius: 10, // to provide rounded corners
-
-
   },
 });
-
-
-
-
