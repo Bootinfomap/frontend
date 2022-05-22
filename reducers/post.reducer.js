@@ -1,12 +1,23 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-    posts : [],
-}
+  posts: [
+    {
+      category: '3',
+      dislike: 0,
+      idx: '0.9227113100703064',
+      latitude: 37.564362,
+      like: 0,
+      longitude: 126.977011,
+      title: '123',
+      userid: 'ID',
+    },
+  ],
+};
 
 
 export const postSlice = createSlice({
-    name: 'postReducer',
+    name: 'post',
     initialState,
     reducers: {
         addPost: (state,action) => {
