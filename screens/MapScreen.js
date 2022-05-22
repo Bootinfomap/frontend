@@ -1,5 +1,11 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {View, Animated} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Modal,
+  Text,
+  TouchableWithoutFeedback,
+  StyleSheet,Animated
+} from 'react-native';
 import NaverMapView from 'react-native-nmap';
 import {useAppDispatch, useAppSelector} from '../app/hooks';
 import {setLocation} from '../reducers/location.reducer';
@@ -8,10 +14,14 @@ import DrawerFilter from '../components/DrawerFilter';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
+import PostListItem from '../components/PostListItem';
+import PostModal from '../components/PostModal';
 
 export default function MapScreen() {
   const data = useAppSelector(state => state.post.posts);
   const dispatch = useAppDispatch();
+  const [visible, setVisible] = useState(false);
+  const [post, setPost] = useState({});
   const height = Dimensions.get('screen').height;
   const width = Dimensions.get('screen').width;
 
@@ -32,8 +42,6 @@ export default function MapScreen() {
     }).start();
   };
 
-
-
   return (
     <View>
       <NaverMapView
@@ -47,6 +55,31 @@ export default function MapScreen() {
         onMapClick={e => console.warn('onMapClick', JSON.stringify(e))}
         useTextureView>
         {data.map((item, ix) => (
+          <MarkerView
+            key={ix}
+            location={{latitude: item.latitude, longitude: item.longitude}}
+            desc={'Marker'}
+            data={item}
+            onClick={() => {
+              setVisible(true);
+              setPost(item);
+            }}
+          />
+        ))}
+      </NaverMapView>
+      {visible && (
+        <Modal animationType="slide" transparent>
+          <View style={styles1.empty}>
+          </View>
+          <TouchableWithoutFeedback
+            onPress={() => setVisible(!visible)}
+            style={{flex:1, backgroundColor: 'yellow'}}>
+            <View style={styles1.container}>
+              <PostListItem post={post} />
+            </View>
+          </TouchableWithoutFeedback>
+        </Modal>
+      )}
           <MarkerView key={ix} location={{ latitude: item.latitude, longitude: item.longitude }} desc={'Marker'} />
         ))}
       </NaverMapView>
@@ -72,6 +105,17 @@ export default function MapScreen() {
   );
 }
 
+const styles1 = StyleSheet.create({
+  empty:{
+    flex:0.7,
+  },
+  container: {
+    flex: 0.3,
+    backgroundColor: '#ffffff',
+    justifyContent: 'flex-end',
+    flexDirection:'column-reverse'
+  },
+});
 const styles = (width, height) => StyleSheet.create({
   filterButtonStyle: {
     position: 'absolute',

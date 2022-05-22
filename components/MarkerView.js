@@ -1,13 +1,21 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Marker} from 'react-native-nmap';
+import { useAppSelector } from '../app/hooks';
 
-export default function MarkerView({location, desc}) {
+export default function MarkerView({location, desc, data, onClick}) {
+  const posts = useAppSelector(state=>state.post.posts)
   return (
     <View>
       <Marker coordinate={location} />
       <Marker coordinate={location} width={80} height={80} onClick={()=>{
-        console.log("click!")
+        for(var post of posts){
+          if(post.id === data.id){
+            console.log(post)
+            onClick()
+          }
+        }
+
       }}>
         <View style={styles.block}>
           <Text style={styles.text}>{desc}</Text>
