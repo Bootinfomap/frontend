@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, SafeAreaView, StyleSheet, Text} from 'react-native';
+import {View} from 'react-native';
 import {List} from 'react-native-paper';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AccountScreen from './AccountScreen';
 import InfoScreen from './InfoScreen';
 import QnAScreen from './QnAScreen';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 const Stack = createNativeStackNavigator();
 
 function Element() {

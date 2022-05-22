@@ -1,17 +1,20 @@
 import React from 'react';
 import {Platform, PermissionsAndroid} from 'react-native'
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createNativeStackNavigator, NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {store} from './app/store';
 import {Provider} from 'react-redux';
 import MainScreen from './screens/MainScreen';
 import LoginScreen from './screens/LoginScreen';
 import ReportScreen from './screens/ReportScreen';
-import { sideAppear } from './const/FilterAnimation';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import {TouchableOpacity} from 'react-native'
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Login: undefined,
+  Main: undefined,
+  Report:undefined
+}
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 async function requestPermissions(){
   if (Platform.OS === 'android') {

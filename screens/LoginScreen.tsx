@@ -4,7 +4,7 @@ import Login from '../components/Login';
 import Register from '../components/Register';
 
 export default function LoginScreen() {
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState<boolean>(true);
   return (
     <View style={styles.container}>
       {login ? <Login onPress={setLogin} /> : <Register onPress={setLogin} />}
