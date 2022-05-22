@@ -1,9 +1,5 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-
-type LocationType ={ 
-  latitude: number,
-  longitude:number
-}
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { LocationType} from '../components/_type/generalType'
 
 interface LocationState {
   value: LocationType

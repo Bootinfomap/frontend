@@ -1,15 +1,5 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-
-type PostType = {
-  latitude: number;
-  like: number;
-  longitude: number;
-  dislike: number;
-  category: string;
-  idx: string;
-  title: string;
-  userid: string;
-};
+import {createSlice} from '@reduxjs/toolkit';
+import {PostType} from '../components/_type/generalType';
 
 interface PostState {
   posts: Array<PostType>;
@@ -20,7 +10,7 @@ const initialState: PostState = {
     {
       category: '3',
       dislike: 0,
-      idx: '0.9227113100703064',
+      id: '0.9227113100703064',
       latitude: 37.564362,
       like: 0,
       longitude: 126.977011,
@@ -50,7 +40,7 @@ export const postSlice = createSlice({
       ];
     },
     removePost: (state, action) => {
-      state.posts = state.posts.filter(post => post.idx !== action.payload.id);
+      state.posts = state.posts.filter(post => post.id !== action.payload.id);
     },
     revisePost: (state, action) => {
       state.posts = state.posts.map(post => {
