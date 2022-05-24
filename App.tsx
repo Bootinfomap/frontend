@@ -7,12 +7,8 @@ import {Provider} from 'react-redux';
 import MainScreen from './screens/MainScreen';
 import LoginScreen from './screens/LoginScreen';
 import ReportScreen from './screens/ReportScreen';
+import {RootStackParamList} from './components/_type/navigationType';
 
-type RootStackParamList = {
-  Login: undefined,
-  Main: undefined,
-  Report:undefined
-}
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

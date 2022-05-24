@@ -6,13 +6,21 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import PostModal from './PostModal';
+import { PostType } from './_type/generalType';
 
+interface PostListItemProp {
+  post: PostType,
+}
+interface LikeType{
+  num: number,
+  already:boolean,
+}
 
-const PostListItem = ({ post }) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [likeNum, setLikeNum] = useState({ num: post.like, already: false });
-  const [dislikeNum, setDislikeNum] = useState({ num: post.dislike, already: false });
-  const setPrefer = (likeORdislike, setlike) => {
+const PostListItem = ({ post }:PostListItemProp) => {
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [likeNum, setLikeNum] = useState<LikeType>({ num: post.like, already: false });
+  const [dislikeNum, setDislikeNum] = useState<LikeType>({ num: post.dislike, already: false });
+  const setPrefer = (likeORdislike:LikeType, setlike:Function) => {
     if (likeORdislike.already == true) {
       setlike({ num: likeORdislike.num - 1, already: !likeORdislike.already })
     }

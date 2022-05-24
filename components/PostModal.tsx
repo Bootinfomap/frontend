@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
     StyleSheet,
-    Text,
     View,
-    TouchableOpacity,
     Modal,
     TouchableWithoutFeedback,
 } from 'react-native';
@@ -11,9 +9,24 @@ import { useNavigation } from '@react-navigation/native';
 import DeleteModal from './DeleteModal';
 import PostModalContent from './PostModalContent';
 import ReviseModal from './ReviseModal';
+import {PostType} from './_type/generalType';
+import {RootStackParamList} from './_type/navigationType';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {ModalContentType} from './_type/generalType';
 
-const PostModal = ({ modalVisible, setModalVisible, post }) => {
-    const navigation = useNavigation();
+interface PostModalProps {
+    modalVisible: boolean,
+    setModalVisible: (param: boolean)=>void,
+    post: PostType
+};
+
+
+type ReportScreenProp = StackNavigationProp<RootStackParamList,'Report'>;
+
+
+
+const PostModal = ({ modalVisible, setModalVisible, post }: PostModalProps) => {
+    const navigation = useNavigation<ReportScreenProp>();
     const [delModalVisible, setDelModalVisible] = useState(false);
     const [reModalVisible, setReModalVisible] = useState(false);
 
@@ -27,7 +40,7 @@ const PostModal = ({ modalVisible, setModalVisible, post }) => {
         navigation.navigate('Report', { title: post.title });
     };
 
-    const contents = useRef([]);
+    const contents = useRef<Array<ModalContentType>>([]);
     useEffect(() => {
         if (post.userid == 'ID') {
             contents.current = [
@@ -63,7 +76,7 @@ const PostModal = ({ modalVisible, setModalVisible, post }) => {
             </TouchableWithoutFeedback>
             <DeleteModal
                 delModalVisible={delModalVisible} setDelModalVisible={setDelModalVisible}
-                id={post.idx}
+                id={post.id}
             />
             <ReviseModal
                 reModalVisible={reModalVisible} setReModalVisible={setReModalVisible}
@@ -74,17 +87,7 @@ const PostModal = ({ modalVisible, setModalVisible, post }) => {
     );
 
 };
-/*
-TouchableOpacity style={postModalStyles.listButton}>
-                        <Text style={postModalStyles.text}>수정하기</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={postModalStyles.listButton} onPress={() => { setDelModalVisible(!delModalVisible); }}>
-                        <Text style={postModalStyles.text}>삭제하기</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={postModalStyles.listButton} onPress={() => { navigation.navigate('Report', { title: post.title }); }}>
-                        <Text style={postModalStyles.text}>신고하기</Text>
-                    </TouchableOpacity>
-*/
+
 const postModalStyles = StyleSheet.create({
     exContainer: {
         flex: 1,
