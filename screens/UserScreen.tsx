@@ -6,14 +6,20 @@ import AccountScreen from './AccountScreen';
 import InfoScreen from './InfoScreen';
 import QnAScreen from './QnAScreen';
 import { useNavigation } from '@react-navigation/native';
-const Stack = createNativeStackNavigator();
+import { SettingContentType } from '../components/_type/generalType';
+import { UserStackParamList } from '../components/_type/navigationType';
+import {StackNavigationProp} from '@react-navigation/stack';
+
+type UserScreenProp = StackNavigationProp<UserStackParamList,'Main'>;
+
+const Stack = createNativeStackNavigator<UserStackParamList>();
 
 function Element() {
   //goodbye: priority-high or undo or directions-run
   // 각 리스트를 클릭 시 사용할 함수, 파일을 따로 만들어도 좋을것 같습니다
-  const navigation = useNavigation();
+  const navigation = useNavigation<UserScreenProp>();
   //각 콘텐츠, id는 인덱스, iconcolor는 기본적으로 파랑, contentcolor는 글자의 색, contentfunc에 클릭하면 작동할 것
-  const contents = [
+  const contents:Array<SettingContentType> = [
     {
       index: 0,
       iconName: 'account',

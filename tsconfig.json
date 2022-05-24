@@ -13,6 +13,11 @@
     "strict": true,
     "target": "esnext"
   },
+  "include": [
+    "./*/*/*",
+    "./*/*",
+    "./*",
+  ],
   "exclude": [
     "node_modules",
     "babel.config.js",

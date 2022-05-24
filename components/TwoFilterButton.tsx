@@ -1,9 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import {
-    StyleSheet,
-    Text,
     View,
-    TouchableOpacity,
 } from 'react-native';
 import EachFilterButton from './EachFilterButton';
 

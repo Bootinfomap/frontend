@@ -14,8 +14,17 @@ import { revisePost } from '../reducers/post.reducer';
 import { useAppDispatch } from '../app/hooks';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CategoryModal from './CategoryModal';
+import {PostType} from './_type/generalType';
 
-const ReviseModal = ({ reModalVisible, setReModalVisible, modalVisible, setModalVisible, post }) => {
+interface ReviseProps{
+    reModalVisible:boolean,
+    setReModalVisible:(v:boolean)=>void,
+    modalVisible:boolean,
+    setModalVisible:(v:boolean)=>void,
+    post:PostType,
+}
+
+const ReviseModal = ({ reModalVisible, setReModalVisible, modalVisible, setModalVisible, post }:ReviseProps) => {
 
     const dispatch = useAppDispatch();
 
@@ -39,7 +48,7 @@ const ReviseModal = ({ reModalVisible, setReModalVisible, modalVisible, setModal
             let item = { ...post };
             item.title = newTitleItem;
             item.category = newCateItem;
-            dispatch(revisePost({ id: post.idx, newPost: item }));
+            dispatch(revisePost({ id: post.id, newPost: item }));
             setNewTitleItem('');
             setNewCateItem('');
             setReModalVisible(!reModalVisible);

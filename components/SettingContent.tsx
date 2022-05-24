@@ -1,20 +1,24 @@
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { SettingContentType } from './_type/generalType';
 
-const SettingContent = ({ content }) => {
+interface SettingProp {
+    content:SettingContentType,
+}
 
+const SettingContent = ({ content }:SettingProp) => {
     return (
-        <TouchableOpacity onPress={content.contentFunc} style={listStyles(content.contentColor).list}>
-            <Icon name={content.iconName} size={22.5} color={content.iconColor} />
-            <View style={listStyles(content.contentColor).textContainer}>
-                <Text style={listStyles(content.contentColor).text}>{content.contentName}</Text>
+        <TouchableOpacity onPress={content.contentFunc} style={listStyles().list}>
+            <Icon name={content.iconName} size={22.5} />
+            <View style={listStyles().textContainer}>
+                <Text style={listStyles().text}>{content.contentName}</Text>
             </View>
         </TouchableOpacity>
     );
 };
 
-const listStyles = (textColor) => StyleSheet.create({
+const listStyles = () => StyleSheet.create({
     list: {
         display: 'flex',
         flexDirection: 'row',
@@ -26,7 +30,6 @@ const listStyles = (textColor) => StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        color: textColor,
         marginStart: 15,
         fontSize: 22.5,
         fontWeight: '800',

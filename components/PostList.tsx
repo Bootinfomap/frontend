@@ -1,12 +1,12 @@
 import PostListItem from './PostListItem';
-import React, {useState} from 'react';
+import React from 'react';
 import {ScrollView, StyleSheet, RefreshControl} from 'react-native';
 import {useAppSelector} from '../app/hooks';
 
 const PostList = () => {
   const posts = useAppSelector(state => state.post.posts);
 
-  const wait = timeout => {
+  const wait = (timeout: number) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
   };
 
@@ -28,7 +28,7 @@ const PostList = () => {
         />
       }>
       {posts.map(post => (
-        <PostListItem key={post.idx} post={post} />
+        <PostListItem key={post.id} post={post} />
       ))}
     </ScrollView>
   );
