@@ -6,7 +6,7 @@ import {
   Text,
 } from 'react-native';
 import ReportReason from '../components/ReportReason';
-import {RootStackParamList} from '../components/_type/navigationType';
+import {RootStackParamList} from '../components/_type/generalType';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 type ReportScreenProp = NativeStackScreenProps<RootStackParamList,'Report'>;
