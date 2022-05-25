@@ -10,7 +10,7 @@ import DeleteModal from './DeleteModal';
 import PostModalContent from './PostModalContent';
 import ReviseModal from './ReviseModal';
 import {PostType} from './_type/generalType';
-import {RootStackParamList} from './_type/navigationType';
+import {RootStackParamList} from './_type/generalType';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {ModalContentType} from './_type/generalType';
 

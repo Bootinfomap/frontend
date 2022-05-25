@@ -7,7 +7,7 @@ import InfoScreen from './InfoScreen';
 import QnAScreen from './QnAScreen';
 import { useNavigation } from '@react-navigation/native';
 import { SettingContentType } from '../components/_type/generalType';
-import { UserStackParamList } from '../components/_type/navigationType';
+import { UserStackParamList } from '../components/_type/generalType';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 type UserScreenProp = StackNavigationProp<UserStackParamList,'Main'>;
