@@ -1,18 +1,17 @@
 import React, {useState, useRef, useEffect}from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Modal,
-  TouchableWithoutFeedback,
-  Animated,
-  Dimensions,
 } from 'react-native';
 import { List } from 'react-native-paper';
-import { sideDisappear } from '../const/FilterAnimation';
 
-const FilterConfirm = ({filteringItem,setFilteringItem,sideDisappear}) => {
+interface ConfirmProp{
+  filteringItem: (string | null)[],
+  sideDisappear: ()=>void,
+  setFilteringItem?: (item: (string | null)[]) => void,
+  
+}
+
+const FilterConfirm = ({filteringItem,sideDisappear}:ConfirmProp) => {
   
   const apply = () => {
     console.log(filteringItem);
@@ -39,7 +38,7 @@ const FilterConfirm = ({filteringItem,setFilteringItem,sideDisappear}) => {
   )
 }
 
-const styles = () => StyleSheet.create({
+const styles = StyleSheet.create({
     section: {
       flex: 1,
     },

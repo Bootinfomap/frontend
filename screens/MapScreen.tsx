@@ -17,17 +17,16 @@ import DrawerFilter from '../components/DrawerFilter';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Geolocation from 'react-native-geolocation-service';
 import PostListItem from '../components/PostListItem';
-import PostModal from '../components/PostModal';
-
+//직접 nmap의 index.tsx 가보니 onTouch가 ()=>void type이라 빨근줄이 뜹니다
 export default function MapScreen() {
   const data = useAppSelector(state => state.post.posts);
   const dispatch = useAppDispatch();
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState<boolean>(false);
   const [post, setPost] = useState({});
-  const height = Dimensions.get('screen').height;
-  const width = Dimensions.get('screen').width;
+  const height:number = Dimensions.get('screen').height;
+  const width:number = Dimensions.get('screen').width;
 
-  const sideAni = useRef(new Animated.Value(width)).current;
+  const sideAni = useRef<Animated.Value>(new Animated.Value(width)).current;
   const sideAppear = () => {
     Animated.timing(sideAni, {
       toValue: 0,
@@ -38,7 +37,6 @@ export default function MapScreen() {
   const sideDisappear = () => {
     Animated.spring(sideAni, {
       toValue: width,
-      duration: 1000,
       useNativeDriver: true,
     }).start();
   };

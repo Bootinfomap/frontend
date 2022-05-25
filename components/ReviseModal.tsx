@@ -28,7 +28,7 @@ const ReviseModal = ({ reModalVisible, setReModalVisible, modalVisible, setModal
 
     const dispatch = useAppDispatch();
 
-    const inputRef = useRef();
+    const inputRef = useRef<TextInput>(null);
 
     useEffect(() => {
         setTimeout(() => inputRef.current?.focus(), 0)

@@ -1,21 +1,22 @@
 import { produceWithPatches } from 'immer';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
-    Text,
     View,
-    TouchableOpacity,
-    Modal,
     TouchableWithoutFeedback,
     Animated,
-    Dimensions,
 } from 'react-native';
 import FilterButton from './FilterButton';
 import FilterConfirm from './FilterConfirm';
-import FilterTitle from './FilterTitle';
+//import FilterTitle from './FilterTitle';
+interface DrawerProp{
+    sideDisappear: () => void,
+    sideAni: Animated.Value,
+}
 
-const DrawerFilter = ({sideDisappear,sideAni}) => {
-    const [filteringItem, setFilteringItem] = useState([]);//필터링할 카테고리들
+
+const DrawerFilter = ({ sideDisappear, sideAni }: DrawerProp) => {
+    const [filteringItem, setFilteringItem] = useState<(string | null)[]>([]);//필터링할 카테고리들
     useEffect(() => {
         sideDisappear();
     }, [])

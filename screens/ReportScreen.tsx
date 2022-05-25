@@ -6,7 +6,13 @@ import {
   Text,
 } from 'react-native';
 import ReportReason from '../components/ReportReason';
-const ReportScreen = ({navigation,route}) => {
+import {RootStackParamList} from '../components/_type/navigationType';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+
+type ReportScreenProp = NativeStackScreenProps<RootStackParamList,'Report'>;
+
+
+const ReportScreen = ({route,navigation}:ReportScreenProp) => {
     let reportThing = route.params.title;
     let textVal = '';
     if (reportThing.length > 12){

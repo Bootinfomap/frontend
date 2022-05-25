@@ -5,7 +5,6 @@ import PostList from '../components/PostList';
 
 export default function FeedScreen() {
   // posts: {idx, user_idx, title, category, public, location, create_at, modified_at, deleted_at}
-  const [posts, setPosts] = useState([]);
   /*
   var date= new Date();
   var tempDate= new Date(2022,3,13,9,47);

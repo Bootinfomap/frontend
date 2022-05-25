@@ -5,6 +5,7 @@ import FeedScreen from './FeedScreen';
 import UserScreen from './UserScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+//tabBarOptions={{showIcon: true}} 어떤걸 하는건가요?
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -13,8 +14,8 @@ export default function MainScreen() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      tabBarOptions={{showIcon: true}}
-      shifting>
+      shifting= {true}
+      >
       <Tab.Screen
         name="Map"
         options={{

@@ -5,10 +5,15 @@ import {
     View,
     TouchableOpacity,
 } from 'react-native';
-import { ease } from 'react-native/Libraries/Animated/Easing';
+//import { ease } from 'react-native/Libraries/Animated/Easing';
 
+interface EachButtonProp {
+    category: string|null,
+    filteringItem: (string | null)[],
+    setFilteringItem: (item: (string | null)[]) => void,
+}
 
-const EachFilterButton = ({ category, filteringItem, setFilteringItem, }) => {
+const EachFilterButton = ({ category, filteringItem, setFilteringItem, }: EachButtonProp) => {
 
     const [eachIsPress, setEachIsPress] = useState(false);
 
@@ -39,7 +44,7 @@ const EachFilterButton = ({ category, filteringItem, setFilteringItem, }) => {
     )
 }
 
-const styles = (buttonColor) => StyleSheet.create({
+const styles = (buttonColor: string) => StyleSheet.create({
     button: {
         backgroundColor: buttonColor,
         borderRadius: 10,
@@ -50,7 +55,6 @@ const styles = (buttonColor) => StyleSheet.create({
         marginHorizontal: 10,
         flex: 1,
         marginVertical: 3,
-        marginHorizontal: 20,
     },
     text: {
         color: 'white',
