@@ -5,10 +5,15 @@ import {
     StyleSheet,
     TouchableWithoutFeedback,
 } from 'react-native'
-import { List, RadioButton,Card,Title,Button } from "react-native-paper";
-import Icon from 'react-native-vector-icons';
+import { RadioButton, Card, Button } from "react-native-paper";
 
-const CategoryModal = ({ cateModalVisible, setCateModalVisible, setNewCateItem }) => {
+interface CategoryType {
+    cateModalVisible: boolean,
+    setCateModalVisible: (modalVisible: boolean) => void,
+    setNewCateItem?: (category: string) => void,
+}
+
+const CategoryModal = ({ cateModalVisible, setCateModalVisible, setNewCateItem }: CategoryType) => {
     const [value, setValue] = useState('first');
     return (
         <Modal
@@ -40,14 +45,14 @@ const CategoryModal = ({ cateModalVisible, setCateModalVisible, setNewCateItem }
                                 }}>
                                 <Button
                                     mode='outlined'
-                                    style={{ flex: 1, alignItens: 'center', justifyContent: 'center', margin:4, }}
+                                    style={{ flex: 1, alignItems: 'center', justifyContent: 'center', margin: 4, }}
                                     labelStyle={{ color: 'black' }}
                                     onPress={() => { setCateModalVisible(!cateModalVisible) }}>
                                     선택하기!
                                 </Button>
                                 <Button
                                     mode='outlined'
-                                    style={{ flex: 1, alignItens: 'center', justifyContent: 'center' ,margin: 4,}}
+                                    style={{ flex: 1, alignItems: 'center', justifyContent: 'center', margin: 4, }}
                                     labelStyle={{ color: 'black' }}
                                     onPress={() => { setCateModalVisible(!cateModalVisible) }}>
                                     나가기
@@ -78,10 +83,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 7,
     },
-    title:{
+    title: {
         margin: 8,
         fontSize: 17.5,
-      },
+    },
 })
 
 export default CategoryModal;

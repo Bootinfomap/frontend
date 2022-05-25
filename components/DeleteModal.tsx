@@ -9,8 +9,15 @@ import {
 } from 'react-native';
 import { useAppDispatch } from '../app/hooks';
 import { removePost } from '../reducers/post.reducer';
+import {PostType} from './_type/generalType';
 
-const DeleteModal = ({ delModalVisible, setDelModalVisible, id }) => {
+interface DelModalType {
+    delModalVisible: boolean,
+    setDelModalVisible: (modalVisible: boolean) => void,
+    id: PostType['id'], 
+}
+
+const DeleteModal = ({ delModalVisible, setDelModalVisible, id }:DelModalType) => {
     const dispatch = useAppDispatch();
     return (
         <Modal
@@ -73,7 +80,6 @@ const deleteModalStyles = StyleSheet.create({
     yesORno: {
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'space-between',
     },
     nofiText: {
         flex: 1,

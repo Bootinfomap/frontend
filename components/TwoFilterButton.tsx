@@ -4,7 +4,17 @@ import {
 } from 'react-native';
 import EachFilterButton from './EachFilterButton';
 
-const TwoFilterButton = ({ twoCategory, filteringItem, setFilteringItem, }) => {
+type CatePair = {id:number, left:string|null,right:string|null}; 
+
+interface TwoButtonProp{
+    twoCategory: CatePair,
+    filteringItem: (string | null)[],
+    setFilteringItem: (item: (string | null)[]) => void,
+}
+
+
+
+const TwoFilterButton = ({ twoCategory, filteringItem, setFilteringItem, }: TwoButtonProp) => {
     return (
         <View style={{
             flexDirection: 'row',
