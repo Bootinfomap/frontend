@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
-  Button,
   TextInput,
   Keyboard,
   Alert,
-  Modal,
   TouchableOpacity,
   Text,
 } from 'react-native';

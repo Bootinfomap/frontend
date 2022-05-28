@@ -1,13 +1,7 @@
-import React, {useState, useRef, useEffect}from 'react';
+import React from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Modal,
-  TouchableWithoutFeedback,
-  Animated,
-  Dimensions,
+  Text
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
