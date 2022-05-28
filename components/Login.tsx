@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 import {View, TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {
-  TextInput,
-  Button,
-  HelperText,
-  RadioButton,
-  Switch,
-  Text,
-} from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp} from '@react-navigation/stack'
+import { TextInput, Button, HelperText, Switch, Text } from 'react-native-paper';
+import { RootStackParamList} from './_type/generalType'
 
-export default function Login({onPress}) {
-  const navigation = useNavigation();
+interface LoginProps {
+  onPress: (arg0: boolean) => void;
+}
+
+type NavigationProps = StackNavigationProp<RootStackParamList, 'Main'>;
+
+export default function Login({onPress}:LoginProps) {
+  const navigation = useNavigation<NavigationProps>();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailWarn, setEmailWarn] = useState(false);

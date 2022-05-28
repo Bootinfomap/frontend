@@ -1,8 +1,7 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   View,
   Modal,
-  Text,
   TouchableWithoutFeedback,
   Animated,
   TouchableOpacity,
@@ -15,16 +14,26 @@ import {setLocation} from '../reducers/location.reducer';
 import MarkerView from '../components/MarkerView';
 import DrawerFilter from '../components/DrawerFilter';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Geolocation from 'react-native-geolocation-service';
 import PostListItem from '../components/PostListItem';
+import {PostType} from '../components/_type/generalType';
+
 //직접 nmap의 index.tsx 가보니 onTouch가 ()=>void type이라 빨근줄이 뜹니다
 export default function MapScreen() {
   const data = useAppSelector(state => state.post.posts);
   const dispatch = useAppDispatch();
   const [visible, setVisible] = useState<boolean>(false);
-  const [post, setPost] = useState({});
-  const height:number = Dimensions.get('screen').height;
-  const width:number = Dimensions.get('screen').width;
+  const [post, setPost] = useState<PostType>({
+    latitude: 0,
+    like: 0,
+    longitude: 0,
+    dislike: 0,
+    id: '',
+    category: '',
+    title: '',
+    userid: '',
+  });
+  const height: number = Dimensions.get('screen').height;
+  const width: number = Dimensions.get('screen').width;
 
   const sideAni = useRef<Animated.Value>(new Animated.Value(width)).current;
   const sideAppear = () => {
@@ -47,7 +56,6 @@ export default function MapScreen() {
         style={{width: '100%', height: '100%'}}
         showsMyLocationButton={true}
         center={{...{latitude: 37.564362, longitude: 126.977011}, zoom: 16}}
-        onTouch={e => console.warn('onTouch', JSON.stringify(e.nativeEvent))}
         onCameraChange={e => {
           dispatch(setLocation({latitude: e.latitude, longitude: e.longitude}));
         }}

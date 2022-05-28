@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View} from 'react-native';
 // import {Input, Button} from '@rneui/themed';
 import {TextInput, Button, HelperText} from 'react-native-paper';
 
-export default function Register({onPress}) {
+interface RegisterProps {
+  onPress: (arg0: boolean) => void;
+}
+
+export default function Register({onPress}:RegisterProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
