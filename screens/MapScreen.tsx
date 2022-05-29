@@ -17,6 +17,27 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import PostListItem from '../components/PostListItem';
 import {PostType} from '../components/_type/generalType';
 
+const Preview = ({visible, setVisible, post}) => {
+  return (
+    <Modal
+      animationType="slide"
+      transparent
+      visible={visible}
+      onRequestClose={() => {
+        setVisible(!visible);
+      }}>
+      <TouchableWithoutFeedback onPress={() => setVisible(!visible)}>
+        <View style={styles1.container}>
+          <View style={styles1.empty} />
+          <View style={styles1.inner}>
+            <PostListItem post={post} />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </Modal>
+  );
+};
+
 //직접 nmap의 index.tsx 가보니 onTouch가 ()=>void type이라 빨근줄이 뜹니다
 export default function MapScreen() {
   const data = useAppSelector(state => state.post.posts);
@@ -73,37 +94,41 @@ export default function MapScreen() {
             }}
           />
         ))}
-        {visible && (
-          <Modal animationType="slide" transparent>
-            <View style={styles1.empty}></View>
-            <TouchableWithoutFeedback
-              onPress={() => setVisible(!visible)}
-              style={{flex: 1, backgroundColor: 'yellow'}}>
-              <View style={styles1.container}>
-                <PostListItem post={post} />
-              </View>
-            </TouchableWithoutFeedback>
-          </Modal>
-        )}
-      </NaverMapView>
-      <TouchableOpacity
-        onPress={sideAppear}
-        style={[
-          styles(width, height).filterButtonStyle,
-          {
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 2,
-              height: 2,
+
+        <TouchableOpacity
+          onPress={sideAppear}
+          style={[
+            styles(width, height).filterButtonStyle,
+            {
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 2,
+                height: 2,
+              },
+              shadowOpacity: 0.7,
+              shadowRadius: 3.84,
+              elevation: 5,
             },
-            shadowOpacity: 0.7,
-            shadowRadius: 3.84,
-            elevation: 5,
-          },
-        ]}>
-        <Icon name={'filter'} size={width * 0.06} color={'#fff'} />
-      </TouchableOpacity>
-      <DrawerFilter sideDisappear={sideDisappear} sideAni={sideAni} />
+          ]}>
+          <Icon name={'filter'} size={width * 0.06} color={'#fff'} />
+        </TouchableOpacity>
+        <DrawerFilter sideDisappear={sideDisappear} sideAni={sideAni} />
+      </NaverMapView>
+      <Modal animationType="slide" transparent visible={visible}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            console.log('before', visible);
+            setVisible(false);
+            console.log('after', visible);
+          }}>
+          <View style={styles1.container}>
+            <View style={styles1.empty} />
+            <View style={styles1.inner}>
+              <PostListItem post={post} />
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
     </View>
   );
 }
@@ -113,10 +138,14 @@ const styles1 = StyleSheet.create({
     flex: 0.7,
   },
   container: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  inner: {
     flex: 0.3,
     backgroundColor: '#ffffff',
-    justifyContent: 'flex-end',
-    flexDirection: 'column-reverse',
+    borderColor: 'black',
+    borderWidth: 1
   },
 });
 const styles = (width: number, height: number) =>
