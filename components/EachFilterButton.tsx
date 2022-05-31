@@ -7,13 +7,13 @@ import {
 } from 'react-native';
 //import { ease } from 'react-native/Libraries/Animated/Easing';
 
-interface EachButtonProp {
+interface EachButtonProps {
     category: string|null,
     filteringItem: (string | null)[],
     setFilteringItem: (item: (string | null)[]) => void,
 }
 
-const EachFilterButton = ({ category, filteringItem, setFilteringItem, }: EachButtonProp) => {
+const EachFilterButton = ({ category, filteringItem, setFilteringItem, }: EachButtonProps) => {
 
     const [eachIsPress, setEachIsPress] = useState(false);
 

@@ -7,13 +7,13 @@ import {
 } from 'react-native'
 import { RadioButton, Card, Button } from "react-native-paper";
 
-interface CategoryType {
+interface CategoryProps {
     cateModalVisible: boolean,
     setCateModalVisible: (modalVisible: boolean) => void,
     setNewCateItem?: (category: string) => void,
 }
 
-const CategoryModal = ({ cateModalVisible, setCateModalVisible, setNewCateItem }: CategoryType) => {
+const CategoryModal = ({ cateModalVisible, setCateModalVisible, setNewCateItem }: CategoryProps) => {
     const [value, setValue] = useState('first');
     return (
         <Modal

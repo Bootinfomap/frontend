@@ -11,13 +11,13 @@ import { useAppDispatch } from '../app/hooks';
 import { removePost } from '../reducers/post.reducer';
 import {PostType} from './_type/generalType';
 
-interface DelModalType {
+interface DelModalProps {
     delModalVisible: boolean,
     setDelModalVisible: (modalVisible: boolean) => void,
     id: PostType['id'], 
 }
 
-const DeleteModal = ({ delModalVisible, setDelModalVisible, id }:DelModalType) => {
+const DeleteModal = ({ delModalVisible, setDelModalVisible, id }:DelModalProps) => {
     const dispatch = useAppDispatch();
     return (
         <Modal

@@ -3,11 +3,11 @@ import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { SettingContentType } from './_type/generalType';
 
-interface SettingProp {
+interface SettingProps {
     content:SettingContentType,
 }
 
-const SettingContent = ({ content }:SettingProp) => {
+const SettingContent = ({ content }:SettingProps) => {
     return (
         <TouchableOpacity onPress={content.contentFunc} style={listStyles().list}>
             <Icon name={content.iconName} size={22.5} />

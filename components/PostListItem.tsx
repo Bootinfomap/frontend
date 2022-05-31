@@ -8,7 +8,7 @@ import {
 import PostModal from './PostModal';
 import { PostType } from './_type/generalType';
 
-interface PostListItemProp {
+interface PostListItemProps {
   post: PostType,
 }
 interface LikeType{
@@ -16,7 +16,7 @@ interface LikeType{
   already:boolean,
 }
 
-const PostListItem = ({ post }:PostListItemProp) => {
+const PostListItem = ({ post }:PostListItemProps) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [likeNum, setLikeNum] = useState<LikeType>({ num: post.like, already: false });
   const [dislikeNum, setDislikeNum] = useState<LikeType>({ num: post.dislike, already: false });

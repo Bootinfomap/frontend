@@ -6,7 +6,7 @@ import EachFilterButton from './EachFilterButton';
 
 type CatePair = {id:number, left:string|null,right:string|null}; 
 
-interface TwoButtonProp{
+interface TwoButtonProps{
     twoCategory: CatePair,
     filteringItem: (string | null)[],
     setFilteringItem: (item: (string | null)[]) => void,
@@ -14,7 +14,7 @@ interface TwoButtonProp{
 
 
 
-const TwoFilterButton = ({ twoCategory, filteringItem, setFilteringItem, }: TwoButtonProp) => {
+const TwoFilterButton = ({ twoCategory, filteringItem, setFilteringItem, }: TwoButtonProps) => {
     return (
         <View style={{
             flexDirection: 'row',
