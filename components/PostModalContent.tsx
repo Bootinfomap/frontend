@@ -9,12 +9,12 @@ import {ModalContentType} from './_type/generalType';
 //designed to be worked by the content props by external component, depends on user.   
 //import userControl from '../reducers/post.reducer';
 //import { useAppDispatch, useAppSelecter } from '../app/hooks';
-interface contentProp {
+interface contentProps {
     content: ModalContentType,
 };
 
 
-const PostModalContent = ({content}:contentProp) => {
+const PostModalContent = ({content}:contentProps) => {
     //content = {text: string,pressFunc: fucntion, iconName: string, iconColor: string,hex-color,}
     /*
     pressFunc = ({prams...}) => {work}
