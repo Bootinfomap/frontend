@@ -1,44 +1,36 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import {
     StyleSheet,
     Text,
-    View,
     TouchableOpacity,
 } from 'react-native';
+import { useAppDispatch, useAppSelector} from '../app/hooks';
+import { addFilter, removeFilter } from '../reducers/filter.reducer';
 //import { ease } from 'react-native/Libraries/Animated/Easing';
 
 interface EachButtonProps {
-    category: string|null,
-    filteringItem: (string | null)[],
-    setFilteringItem: (item: (string | null)[]) => void,
+    category: string,
 }
 
-const EachFilterButton = ({ category, filteringItem, setFilteringItem, }: EachButtonProps) => {
+const EachFilterButton = ({ category }: EachButtonProps) => {
+    const filter = useAppSelector(state => state.filter);
+    const dispatch = useAppDispatch();
 
-    const [eachIsPress, setEachIsPress] = useState(false);
+    const [buttonColor,setButtonColor] = useState('#313131');
 
-    if (category == null) {
-        return (
-            <View style={styles('white').button}>
-            </View>
-        )
-    }//if category is null, returns empty area
-    //{press: boolen ,category:string} or null
-    const buttonHandle = () => {
-        if (eachIsPress == true) {
-            setFilteringItem(filteringItem.filter(item => item !== category))
-        }//눌려있으면 지우기
-        else {
-            let temp = [...filteringItem];
-            temp.push(category);
-            setFilteringItem(temp);
-        }//안눌려있으면 추가하기
-        setEachIsPress(!eachIsPress);
-        //버튼상태바꾸기
+    useEffect(() => {
+        filter.isPress[category as keyof typeof filter.isPress] ? setButtonColor('green') : setButtonColor('#313131');
+      },[filter.isPress]);
+
+    const buttonHandler = () => {
+        filter.isPress[category as keyof typeof filter.isPress] ? dispatch(removeFilter(category)) : dispatch(addFilter(category));
+        console.log(filter.isPress[category as keyof typeof filter.isPress]);
     }
 
     return (
-        <TouchableOpacity style={eachIsPress ? styles('green').button : styles('#313131').button} onPress={buttonHandle}>
+        <TouchableOpacity 
+        style= {styles(buttonColor).button}
+        onPress={buttonHandler}>
             <Text style={styles('#fff').text}>{category}</Text>
         </TouchableOpacity>
     )
@@ -46,15 +38,15 @@ const EachFilterButton = ({ category, filteringItem, setFilteringItem, }: EachBu
 
 const styles = (buttonColor: string) => StyleSheet.create({
     button: {
+        
         backgroundColor: buttonColor,
         borderRadius: 10,
         paddingVertical: 4,
         paddingHorizontal: 15,
         alignItems: 'center',
         justifyContent: 'center',
-        marginHorizontal: 10,
-        flex: 1,
-        marginVertical: 3,
+        marginHorizontal: 15,
+        marginVertical: 10,
     },
     text: {
         color: 'white',
