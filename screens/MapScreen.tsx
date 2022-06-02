@@ -17,27 +17,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import PostListItem from '../components/PostListItem';
 import {PostType} from '../components/_type/generalType';
 
-const Preview = ({visible, setVisible, post}) => {
-  return (
-    <Modal
-      animationType="slide"
-      transparent
-      visible={visible}
-      onRequestClose={() => {
-        setVisible(!visible);
-      }}>
-      <TouchableWithoutFeedback onPress={() => setVisible(!visible)}>
-        <View style={styles1.container}>
-          <View style={styles1.empty} />
-          <View style={styles1.inner}>
-            <PostListItem post={post} />
-          </View>
-        </View>
-      </TouchableWithoutFeedback>
-    </Modal>
-  );
-};
-
 //직접 nmap의 index.tsx 가보니 onTouch가 ()=>void type이라 빨근줄이 뜹니다
 export default function MapScreen() {
   const data = useAppSelector(state => state.post.posts);
