@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Modal,
@@ -9,14 +9,38 @@ import {
   StyleSheet,
 } from 'react-native';
 import NaverMapView from 'react-native-nmap';
-import {useAppDispatch, useAppSelector} from '../app/hooks';
-import {setLocation} from '../reducers/location.reducer';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { setLocation } from '../reducers/location.reducer';
 import MarkerView from '../components/MarkerView';
 import DrawerFilter from '../components/DrawerFilter';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import PostListItem from '../components/PostListItem';
-import {PostType} from '../components/_type/generalType';
+import { PostType } from '../components/_type/generalType';
 
+<<<<<<< HEAD
+const Preview = ({ visible, setVisible, post }) => {
+  return (
+    <Modal
+      animationType="slide"
+      transparent
+      visible={visible}
+      onRequestClose={() => {
+        setVisible(!visible);
+      }}>
+      <TouchableWithoutFeedback onPress={() => setVisible(!visible)}>
+        <View style={styles1.container}>
+          <View style={styles1.empty} />
+          <View style={styles1.inner}>
+            <PostListItem post={post} />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </Modal>
+  );
+};
+
+=======
+>>>>>>> 654bf7e632c279285a64236ce8f1aa0aa8aa8357
 //직접 nmap의 index.tsx 가보니 onTouch가 ()=>void type이라 빨근줄이 뜹니다
 export default function MapScreen() {
   const data = useAppSelector(state => state.post.posts);
@@ -53,18 +77,18 @@ export default function MapScreen() {
   return (
     <View>
       <NaverMapView
-        style={{width: '100%', height: '100%'}}
+        style={{ width: '100%', height: '100%' }}
         showsMyLocationButton={true}
-        center={{...{latitude: 37.564362, longitude: 126.977011}, zoom: 16}}
+        center={{ ...{ latitude: 37.564362, longitude: 126.977011 }, zoom: 16 }}
         onCameraChange={e => {
-          dispatch(setLocation({latitude: e.latitude, longitude: e.longitude}));
+          dispatch(setLocation({ latitude: e.latitude, longitude: e.longitude }));
         }}
         onMapClick={e => console.warn('onMapClick', JSON.stringify(e))}
         useTextureView>
         {data.map((item, ix) => (
           <MarkerView
             key={ix}
-            location={{latitude: item.latitude, longitude: item.longitude}}
+            location={{ latitude: item.latitude, longitude: item.longitude }}
             desc={'Marker'}
             data={item}
             onClick={() => {
@@ -73,25 +97,6 @@ export default function MapScreen() {
             }}
           />
         ))}
-
-        <TouchableOpacity
-          onPress={sideAppear}
-          style={[
-            styles(width, height).filterButtonStyle,
-            {
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 2,
-                height: 2,
-              },
-              shadowOpacity: 0.7,
-              shadowRadius: 3.84,
-              elevation: 5,
-            },
-          ]}>
-          <Icon name={'filter'} size={width * 0.06} color={'#fff'} />
-        </TouchableOpacity>
-        <DrawerFilter sideDisappear={sideDisappear} sideAni={sideAni} />
       </NaverMapView>
       <Modal animationType="slide" transparent visible={visible}>
         <TouchableWithoutFeedback
@@ -108,6 +113,24 @@ export default function MapScreen() {
           </View>
         </TouchableWithoutFeedback>
       </Modal>
+      <DrawerFilter sideDisappear={sideDisappear} sideAni={sideAni} />
+      <TouchableOpacity
+          onPress={sideAppear}
+          style={[
+            styles(width, height).filterButtonStyle,
+            {
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 2,
+                height: 2,
+              },
+              shadowOpacity: 0.7,
+              shadowRadius: 3.84,
+              elevation: 5,
+            },
+          ]}>
+          <Icon name={'filter'} size={width * 0.06} color={'#fff'} />
+        </TouchableOpacity>
     </View>
   );
 }
