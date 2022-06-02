@@ -4,14 +4,14 @@ import {
 } from 'react-native';
 import { List } from 'react-native-paper';
 
-interface ConfirmProp{
+interface ConfirmProps{
   filteringItem: (string | null)[],
   sideDisappear: ()=>void,
   setFilteringItem?: (item: (string | null)[]) => void,
   
 }
 
-const FilterConfirm = ({filteringItem,sideDisappear}:ConfirmProp) => {
+const FilterConfirm = ({filteringItem,sideDisappear}:ConfirmProps) => {
   
   const apply = () => {
     console.log(filteringItem);

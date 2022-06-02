@@ -8,13 +8,13 @@ import {
 import FilterButton from './FilterButton';
 import FilterConfirm from './FilterConfirm';
 //import FilterTitle from './FilterTitle';
-interface DrawerProp{
+interface DrawerProps{
     sideDisappear: () => void,
     sideAni: Animated.Value,
 }
 
 
-const DrawerFilter = ({ sideDisappear, sideAni }: DrawerProp) => {
+const DrawerFilter = ({ sideDisappear, sideAni }: DrawerProps) => {
     const [filteringItem, setFilteringItem] = useState<(string | null)[]>([]);//필터링할 카테고리들
     useEffect(() => {
         sideDisappear();
