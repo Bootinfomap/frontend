@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import PostListItem from '../components/PostListItem';
 import { PostType } from '../components/_type/generalType';
 
+<<<<<<< HEAD
 const Preview = ({ visible, setVisible, post }) => {
   return (
     <Modal
@@ -38,6 +39,8 @@ const Preview = ({ visible, setVisible, post }) => {
   );
 };
 
+=======
+>>>>>>> 654bf7e632c279285a64236ce8f1aa0aa8aa8357
 //직접 nmap의 index.tsx 가보니 onTouch가 ()=>void type이라 빨근줄이 뜹니다
 export default function MapScreen() {
   const data = useAppSelector(state => state.post.posts);
