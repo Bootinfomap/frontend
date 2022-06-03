@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,20 +7,29 @@ import {
 } from 'react-native';
 import PostModal from './PostModal';
 import { PostType } from './_type/generalType';
+import { useNavigation } from '@react-navigation/native';
+import { BottomTabParamList } from './_type/generalType'
+import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 interface PostListItemProps {
   post: PostType,
 }
-interface LikeType{
+
+interface LikeType {
   num: number,
-  already:boolean,
+  already: boolean,
 }
 
-const PostListItem = ({ post }:PostListItemProps) => {
+type MapScreenProp = BottomTabScreenProps<BottomTabParamList, 'Map'>;
+
+const PostListItem = ({ post }: PostListItemProps) => {
+
+  const navigation = useNavigation<MapScreenProp>();
+
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [likeNum, setLikeNum] = useState<LikeType>({ num: post.like, already: false });
   const [dislikeNum, setDislikeNum] = useState<LikeType>({ num: post.dislike, already: false });
-  const setPrefer = (likeORdislike:LikeType, setlike:Function) => {
+  const setPrefer = (likeORdislike: LikeType, setlike: Function) => {
     if (likeORdislike.already == true) {
       setlike({ num: likeORdislike.num - 1, already: !likeORdislike.already })
     }
@@ -29,12 +38,48 @@ const PostListItem = ({ post }:PostListItemProps) => {
     }
   };
 
+  const itemTouch = () => {
+    //navigation.navigate('Map',{position: {latitude: post.latitude, longitude: post.longitude}});
+    console.log('touch listItem');
+  }
+
+  const [postAddr, setPostAddr] = useState<string>();
+
+  const stringLatitude: string = post.latitude.toString();
+  const stringLongitude: string = post.longitude.toString();
+
+  const apiHost: string = 'https://dapi.kakao.com';
+  const apiCategory: string = '/v2/local/geo/coord2regioncode';
+  const apiUrlFormat: string = '.json?' + 'x=' + stringLongitude + '&y=' + stringLatitude + '&input_coord=WGS84';
+  //포맷 + longitude + latitude + 좌표계형식
+  const apiUrl: string = apiHost + apiCategory + apiUrlFormat;
+  const RESTAPIKEY: string = '4b97cfb039b6b9901e063590d17848a2';
+
+
+  useEffect(() => {
+    fetch(apiUrl, {
+      headers: new Headers({ 'Authorization': 'KakaoAK ' + RESTAPIKEY })
+    })
+      .then((response) => response.json())
+      .then((data) => setPostAddr(data.documents[0].region_2depth_name))
+      .catch((error) => console.log("error:", error));
+  }, []);
+/*
+ "region_1depth_name": "서울특별시", 
+ "region_2depth_name": "중구", 
+ "region_3depth_name": "태평로2가", 
+ "region_4depth_name": ""
+ */
+//documents[0]: 행정동, documents[1]:법정동,
+
+
+
   return (
     <View style={postListStyles.exexContainer}>
-      <TouchableOpacity style={postListStyles.exContainer}>
+      <TouchableOpacity style={postListStyles.exContainer} onPress={itemTouch}>
         <View style={postListStyles.inContainer}>
           <Text style={postListStyles.agoNuserid}>
-            {post.userid}
+            {postAddr}
           </Text>
           <Text style={postListStyles.agoNuserid}>
             severTime - postTime
@@ -63,7 +108,7 @@ const PostListItem = ({ post }:PostListItemProps) => {
       <PostModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
-        post = {post}
+        post={post}
       />
     </View>
   );

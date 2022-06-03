@@ -43,3 +43,10 @@ export type UserStackParamList = {
   Info:undefined,
   QnA:undefined,
 }
+
+export type BottomTabParamList = {
+  Home:undefined,
+  Map:{position?:LocationType},
+  Feed:undefined,
+  User:undefined,
+}
