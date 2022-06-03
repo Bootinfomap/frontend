@@ -4,10 +4,11 @@ import MapScreen from './MapScreen';
 import FeedScreen from './FeedScreen';
 import UserScreen from './UserScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { BottomTabParamList } from '../components/_type/generalType';
 
 //tabBarOptions={{showIcon: true}} 어떤걸 하는건가요?
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator<BottomTabParamList>();
 
 export default function MainScreen() {
   //icon map or room
